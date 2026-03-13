@@ -1759,54 +1759,62 @@
   </div>
 </section>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function submitForm() {
-  const required = ['f-fname','f-lname','f-email','f-company'];
-  let valid = true;
-  required.forEach(id => {
-    const el = document.getElementById(id);
-    if (!el.value.trim()) {
-      el.style.borderColor = 'rgba(239,68,68,0.6)';
-      el.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.08)';
-      valid = false;
-    } else {
-      el.style.borderColor = '';
-      el.style.boxShadow = '';
-    }
-  });
-  if (!valid) return;
-  // TODO: wire to backend / Formspree / email service
-  document.getElementById('contact-form-inner').style.display = 'none';
-  document.getElementById('form-success').style.display = 'block';
-}
-</script>
 
-<!-- ═══════════════════════ FOOTER ════════════════════════ -->
+
+<!-- ═══════════════════════ FOOTER<!-- ═══════════════════════ FOOTER ════════════════════════ -->
 <footer style="padding:3rem 1.5rem;border-top:1px solid rgba(255,255,255,0.04);background:#000;" class="footer-glow">
   <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:2rem;">
     <div>
       <div style="margin-bottom:0.5rem;">
         <span style="font-family:'Montserrat',sans-serif;font-size:1.25rem;font-weight:900;letter-spacing:-0.02em;color:#fff;">Simple </span><span style="font-family:'Montserrat',sans-serif;font-size:1.25rem;font-weight:900;letter-spacing:-0.02em;background:linear-gradient(135deg,#F5E07A,#D4AF37,#AA8A2E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Genius.</span>
       </div>
-      <p style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#6b7280;">McKinney, TX &nbsp;·&nbsp;  <a href="mailto:hello@simplegenius.io" style="color:#6b7280;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#6b7280'">hello@simplegenius.io</a></p>
+      <p style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:#6b7280;">McKinney, TX &nbsp;·&nbsp;  hello@simplegenius.io</p>
     </div>
     <div style="display:flex;gap:2.5rem;">
       <a href="#" style="font-size:0.6rem;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;color:#374151;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#6b7280'">LinkedIn</a>
       <a href="#" style="font-size:0.6rem;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;color:#374151;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#6b7280'">X / Twitter</a>
-      <a href="/cdn-cgi/l/email-protection#066e636a6a6946756f6b766a636163686f737528676f" style="font-size:0.6rem;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;color:#374151;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#6b7280'">Email</a>
+      <a href="mailto:hello@simplegenius.io" style="font-size:0.6rem;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;color:#374151;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#6b7280'">Email</a>
     </div>
     <p style="font-size:0.6rem;color:#4b5563;letter-spacing:0.1em;">© 2025 Simple Genius Consulting</p>
   </div>
 </footer>
 
-<!-- ═══════════════════════ SCROLL REVEAL JS ══════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Scroll reveal
+<!-- ═══════════════════════ ALL JS ══════════════════════ -->
+<script>
+  // ── Mobile nav ──────────────────────────────────────────
+  function toggleMobNav() {
+    const drawer = document.getElementById('mob-nav');
+    const body   = document.body;
+    const isOpen = drawer.classList.contains('open');
+    if (isOpen) {
+      drawer.classList.remove('open');
+      body.classList.remove('mob-menu-open');
+    } else {
+      drawer.classList.add('open');
+      body.classList.add('mob-menu-open');
+    }
+  }
+
+  function closeMobNav() {
+    document.getElementById('mob-nav').classList.remove('open');
+    document.body.classList.remove('mob-menu-open');
+  }
+
+  // Close drawer when clicking outside
+  document.addEventListener('click', function(e) {
+    const drawer = document.getElementById('mob-nav');
+    const btn    = document.querySelector('.mob-menu-btn');
+    if (drawer.classList.contains('open') && !drawer.contains(e.target) && !btn.contains(e.target)) {
+      closeMobNav();
+    }
+  });
+
+  // ── Scroll reveal ────────────────────────────────────────
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-          e.target.style.opacity = '1';
+        e.target.style.opacity = '1';
         e.target.style.transform = 'translateY(0)';
       }
     });
@@ -1818,7 +1826,7 @@ function submitForm() {
     observer.observe(el);
   });
 
-  // Service accordion toggle
+  // ── Service accordion ────────────────────────────────────
   function toggleSvc(card) {
     const allCards = document.querySelectorAll('.svc-card');
     const isOpen = card.classList.contains('open');
@@ -1826,13 +1834,12 @@ function submitForm() {
     if (!isOpen) card.classList.add('open');
   }
 
-  // Form submit
-  document.getElementById('contact-form-btn').addEventListener('click', function() {
-    const fname = document.getElementById('f-fname').value.trim();
-    const lname = document.getElementById('f-lname').value.trim();
-    const email = document.getElementById('f-email').value.trim();
+  // ── Contact form ─────────────────────────────────────────
+  async function submitForm() {
+    const required = ['f-fname','f-lname','f-email','f-company'];
     let valid = true;
-    [document.getElementById('f-fname'), document.getElementById('f-lname'), document.getElementById('f-email')].forEach(el => {
+    required.forEach(id => {
+      const el = document.getElementById(id);
       if (!el.value.trim()) {
         el.style.borderColor = 'rgba(239,68,68,0.6)';
         el.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.08)';
@@ -1843,9 +1850,40 @@ function submitForm() {
       }
     });
     if (!valid) return;
-    document.getElementById('contact-form-inner').style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
-  });
+
+    const btn = document.querySelector('.form-submit');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    const data = {
+      firstName: document.getElementById('f-fname').value.trim(),
+      lastName:  document.getElementById('f-lname').value.trim(),
+      email:     document.getElementById('f-email').value.trim(),
+      phone:     document.getElementById('f-phone').value.trim(),
+      company:   document.getElementById('f-company').value.trim(),
+      service:   document.getElementById('f-service').value,
+      message:   document.getElementById('f-message').value.trim()
+    };
+
+    try {
+      const res = await fetch('https://formspree.io/f/myknjnqy', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        document.getElementById('contact-form-inner').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        btn.textContent = "Send It → Let's Talk";
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or email hello@simplegenius.io directly.');
+      }
+    } catch(e) {
+      btn.textContent = "Send It → Let's Talk";
+      btn.disabled = false;
+      alert('Connection error. Please email hello@simplegenius.io directly.');
+    }
+  }
 </script>
-</body>
 </html>
