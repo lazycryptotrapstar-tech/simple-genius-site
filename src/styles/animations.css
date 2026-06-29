@@ -1,0 +1,28 @@
+/* ----------------------------------------------------------------------------
+   animations.css — all keyframes + gear animation classes, preserved byte-for-byte
+   from the original single-file index.html. Do not retune these values.
+---------------------------------------------------------------------------- */
+
+/* Gear spins (logo) */
+@keyframes spin-cw  { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes spin-ccw { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+
+.gear-primary   { transform-origin: 200px 178px; animation: spin-cw 18s linear infinite; }
+.gear-secondary { transform-origin: 253px 140px; animation: spin-ccw 11s linear infinite; }
+.gear-tertiary  { transform-origin: 162px 222px; animation: spin-ccw 14s linear infinite; }
+.gear-accent    { transform-origin: 248px 202px; animation: spin-cw 7s linear infinite; }
+
+/* Hovering the nav logo pauses every gear */
+.nav-logo-clip:hover .gear-primary,
+.nav-logo-clip:hover .gear-secondary,
+.nav-logo-clip:hover .gear-tertiary,
+.nav-logo-clip:hover .gear-accent { animation-play-state: paused; }
+
+/* Hero entrance animations */
+@keyframes heroLogoIn { to { opacity: 1; transform: scale(1); } }
+@keyframes heroFadeUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes heroFadeIn { to { opacity: 1; } }
+@keyframes heroScrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.3; }
+  50%      { transform: translateY(6px); opacity: 1; }
+}

@@ -1,0 +1,15 @@
+:root {
+  --obsidian:    #050505;
+  --obsidian2:   #0a0a0a;
+  --obsidian3:   #030303;
+  --gold:        #D4AF37;
+  --gold-light:  #F5E07A;
+  --gold-dark:   #AA8A2E;
+  --amethyst:    #A855F7;
+  --amethyst-dim:rgba(168,85,247,0.12);
+  --lime:        #5cb832;
+  --lime-bright: #72d43e;
+  --lime-dim:    rgba(92,184,50,0.10);
+  --lime-glow:   rgba(92,184,50,0.18);
+  --slate:       #445544;
+}

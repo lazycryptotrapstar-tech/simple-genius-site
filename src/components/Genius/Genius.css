@@ -1,0 +1,188 @@
+/* ----------------------------------------------------------------------------
+   Genius.css — agent-specific styles. Uses the shared design tokens.
+---------------------------------------------------------------------------- */
+
+.genius {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* --- Intro (resting) ------------------------------------------------------ */
+.genius-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+.genius-intro-mark { filter: drop-shadow(0 0 22px rgba(168, 85, 247, 0.25)); }
+.genius-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #fff;
+}
+
+/* --- Conversation thread (active) ----------------------------------------- */
+.genius-thread {
+  width: 100%;
+  max-height: 46vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.5rem 0.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 175, 55, 0.25) transparent;
+}
+.genius-thread::-webkit-scrollbar { width: 6px; }
+.genius-thread::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.25); border-radius: 999px; }
+
+.genius-msg { display: flex; }
+.genius-msg--user { justify-content: flex-end; }
+.genius-msg--assistant { justify-content: flex-start; }
+
+.genius-bubble {
+  max-width: 85%;
+  padding: 0.85rem 1.15rem;
+  border-radius: 1.1rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  font-weight: 300;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.genius-msg--user .genius-bubble {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.16), rgba(170, 138, 46, 0.12));
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  color: #f6f1df;
+  border-bottom-right-radius: 0.35rem;
+}
+.genius-msg--assistant .genius-bubble {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: #e5e7eb;
+  border-bottom-left-radius: 0.35rem;
+}
+
+/* Streaming caret */
+.genius-caret {
+  display: inline-block;
+  width: 7px;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--gold);
+  border-radius: 1px;
+  animation: geniusBlink 1s step-end infinite;
+}
+@keyframes geniusBlink { 50% { opacity: 0; } }
+
+/* --- Input row ------------------------------------------------------------ */
+.genius-input-row { width: 100%; }
+.genius-input-shell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 999px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.genius-input-shell:focus-within {
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.08), 0 0 40px rgba(212, 175, 55, 0.06);
+}
+.genius-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  padding: 0.55rem 0;
+}
+.genius-input::placeholder { color: #6b7280; }
+.genius-input:disabled { opacity: 0.6; }
+
+.genius-send {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #000;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  transition: box-shadow 0.2s, opacity 0.2s;
+}
+.genius-send:hover:not(:disabled) { box-shadow: 0 0 24px rgba(212, 175, 55, 0.4); }
+.genius-send:disabled { opacity: 0.45; cursor: default; }
+
+.genius-error {
+  font-size: 0.8rem;
+  color: #f87171;
+  text-align: center;
+}
+
+/* --- Closing confirmation ------------------------------------------------- */
+.genius--closing { width: 100%; }
+.genius-confirm-card {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.genius-confirm-icon { font-size: 2.6rem; color: var(--gold); margin-bottom: 1rem; }
+.genius-confirm-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+.genius-confirm-body { font-size: 0.95rem; color: #9ca3af; line-height: 1.75; font-weight: 300; }
+.genius-confirm-cta {
+  display: inline-block;
+  margin-top: 1.75rem;
+  padding: 0.9rem 2.2rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.genius-confirm-cta:hover { transform: scale(1.04); box-shadow: 0 0 28px rgba(212, 175, 55, 0.35); }
