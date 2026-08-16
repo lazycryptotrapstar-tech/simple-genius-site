@@ -14,8 +14,8 @@ const CAPABILITIES = [
     blurb: 'Agents and integrations that embed in daily work — not bolted on, not chat widgets.',
   },
   {
-    title: 'Custom platforms for sports, non-profits, and field operations',
-    blurb: 'Multi-tenant infrastructure, event and ticketing systems, measurement and crew tools.',
+    title: 'Systems for appointment-based businesses',
+    blurb: 'Booking, reminders, follow-ups, and quoting for brokers, trades, and salons — from a team that builds full ticketing and multi-tenant platforms.',
   },
 ];
 
