@@ -6,7 +6,7 @@ import MagneticButton from '../polish/MagneticButton';
 import './Genius.css';
 
 // --- Configurable constants -------------------------------------------------
-const CALENDAR_URL = null; // Set to Cal.com/Calendly URL when ready
+const CALENDAR_URL = 'https://cal.com/dee-chitman-kelly-los110/30min';
 const PLACEHOLDER_TEXT = "What's eating your time, or what are you trying to build?";
 // ---------------------------------------------------------------------------
 
