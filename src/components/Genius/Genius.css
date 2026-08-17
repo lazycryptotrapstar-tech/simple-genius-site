@@ -32,15 +32,6 @@
   text-align: center;
   color: #fff;
 }
-.genius-sub {
-  font-size: 1rem;
-  font-weight: 300;
-  color: #9ca3af;
-  text-align: center;
-  max-width: 30rem;
-  line-height: 1.7;
-}
-
 /* --- Conversation thread (active) ----------------------------------------- */
 .genius-thread {
   width: 100%;

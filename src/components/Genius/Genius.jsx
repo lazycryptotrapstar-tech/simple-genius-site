@@ -6,7 +6,7 @@ import './Genius.css';
 
 // --- Configurable constants -------------------------------------------------
 const CALENDAR_URL = 'https://cal.com/dee-chitman-kelly-los110/30min';
-const PLACEHOLDER_TEXT = "What's eating your time, or what are you trying to build?";
+const PLACEHOLDER_TEXT = 'Message Genius…';
 const SUGGESTIONS = [
   'We miss calls and leads go cold',
   'No-shows are killing my estimates',
@@ -84,9 +84,6 @@ export default function Genius() {
       {!hasConversation && (
         <div className="genius-intro">
           <h1 className="genius-headline">What are you trying to build?</h1>
-          <p className="genius-sub">
-            Describe the problem in your own words. Genius will tell you what we'd build for it.
-          </p>
         </div>
       )}
 
