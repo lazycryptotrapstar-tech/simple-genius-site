@@ -35,8 +35,8 @@ export default function Capabilities() {
     <section id="capabilities" style={{ padding: '5rem 1.5rem', background: 'var(--obsidian)' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <div style={{ marginBottom: '3.5rem', maxWidth: 640 }}>
-          <span className="section-label"><span className="accent-line"></span>What We Build</span>
-          <h2 className="font-display" style={{ fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', fontWeight: 900, marginTop: '0.75rem', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+          <span className="section-label"><span className="accent-line"></span>01 · What we build</span>
+          <h2 className="font-display" style={{ fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', fontWeight: 700, marginTop: '0.75rem', letterSpacing: '-0.03em', lineHeight: 1.15 }}>
             Platforms that turn operational data <span className="grad-gold">into action.</span>
           </h2>
         </div>
@@ -45,9 +45,9 @@ export default function Capabilities() {
           {CAPABILITIES.map((c) => (
             <SpotlightCard key={c.title} style={cardStyle}>
               <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: '0.85rem', flex: 1 }}>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#fff', lineHeight: 1.35, fontFamily: "'Montserrat', sans-serif", letterSpacing: '-0.01em' }}>{c.title}</h3>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: '#fff', lineHeight: 1.35, fontFamily: 'var(--font-display)', letterSpacing: '-0.01em' }}>{c.title}</h3>
                 <p style={{ fontSize: '0.88rem', color: '#9ca3af', lineHeight: 1.7, fontWeight: 300, flex: 1 }}>{c.blurb}</p>
-                <a href="#top" style={{ fontSize: '0.58rem', fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: "'Montserrat', sans-serif", textDecoration: 'none', marginTop: '0.5rem' }}>
+                <a href="#top" style={{ fontSize: '0.62rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'var(--font-mono)', textDecoration: 'none', marginTop: '0.5rem' }}>
                   Talk to Genius →
                 </a>
               </div>

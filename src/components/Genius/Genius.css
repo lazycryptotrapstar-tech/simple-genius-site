@@ -1,15 +1,16 @@
 /* ----------------------------------------------------------------------------
    Genius.css — agent-specific styles. Uses the shared design tokens.
+   Mark II: agent-style thread, composer, chips, typing indicator.
 ---------------------------------------------------------------------------- */
 
 .genius {
   width: 100%;
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.6rem;
 }
 
 /* --- Intro (resting) ------------------------------------------------------ */
@@ -17,62 +18,95 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.1rem;
+  gap: 0.9rem;
   opacity: 0;
   transform: translateY(14px);
   animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
 }
-.genius-intro-mark { filter: drop-shadow(0 0 22px rgba(168, 85, 247, 0.25)); }
 .genius-headline {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  font-size: clamp(1.8rem, 4.5vw, 3rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
   text-align: center;
   color: #fff;
+}
+.genius-sub {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #9ca3af;
+  text-align: center;
+  max-width: 30rem;
+  line-height: 1.7;
 }
 
 /* --- Conversation thread (active) ----------------------------------------- */
 .genius-thread {
   width: 100%;
-  max-height: 46vh;
+  max-height: 52vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 0.5rem 0.25rem;
+  gap: 1.4rem;
+  padding: 1.25rem 0.25rem 0.5rem;
   scrollbar-width: thin;
   scrollbar-color: rgba(212, 175, 55, 0.25) transparent;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 1.25rem);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 1.25rem);
 }
 .genius-thread::-webkit-scrollbar { width: 6px; }
 .genius-thread::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.25); border-radius: 999px; }
 
 .genius-msg { display: flex; }
-.genius-msg--user { justify-content: flex-end; }
-.genius-msg--assistant { justify-content: flex-start; }
 
+/* User: quiet gold-tinted bubble, right-aligned */
+.genius-msg--user { justify-content: flex-end; }
 .genius-bubble {
-  max-width: 85%;
-  padding: 0.85rem 1.15rem;
-  border-radius: 1.1rem;
+  max-width: 82%;
+  padding: 0.8rem 1.1rem;
+  border-radius: 1.15rem;
+  border-bottom-right-radius: 0.35rem;
   font-size: 0.95rem;
   line-height: 1.65;
-  font-weight: 300;
+  font-weight: 400;
   white-space: pre-wrap;
   word-break: break-word;
-}
-.genius-msg--user .genius-bubble {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.16), rgba(170, 138, 46, 0.12));
-  border: 1px solid rgba(212, 175, 55, 0.22);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.14), rgba(170, 138, 46, 0.1));
+  border: 1px solid rgba(212, 175, 55, 0.2);
   color: #f6f1df;
-  border-bottom-right-radius: 0.35rem;
 }
-.genius-msg--assistant .genius-bubble {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+
+/* Assistant: no bubble — monogram + flowing text, like a real agent */
+.genius-msg--assistant {
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+.genius-avatar {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  background: rgba(212, 175, 55, 0.08);
+  color: var(--gold);
+  font-size: 0.7rem;
+  margin-top: 0.15rem;
+  box-shadow: 0 0 14px rgba(212, 175, 55, 0.12);
+}
+.genius-answer {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  font-weight: 300;
   color: #e5e7eb;
-  border-bottom-left-radius: 0.35rem;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 /* Streaming caret */
@@ -88,22 +122,45 @@
 }
 @keyframes geniusBlink { 50% { opacity: 0; } }
 
-/* --- Input row ------------------------------------------------------------ */
+/* Typing indicator (before the first token arrives) */
+.genius-typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.55rem 0;
+}
+.genius-typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.7);
+  animation: geniusPulse 1.2s ease-in-out infinite;
+}
+.genius-typing span:nth-child(2) { animation-delay: 0.15s; }
+.genius-typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes geniusPulse {
+  0%, 100% { opacity: 0.25; transform: translateY(0); }
+  40%      { opacity: 1; transform: translateY(-3px); }
+}
+
+/* --- Composer ------------------------------------------------------------- */
 .genius-input-row { width: 100%; }
 .genius-input-shell {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   width: 100%;
-  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(212, 175, 55, 0.18);
-  border-radius: 999px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  padding: 0.55rem 0.55rem 0.55rem 1.3rem;
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.15rem;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  transition: border-color 0.25s, box-shadow 0.25s;
 }
 .genius-input-shell:focus-within {
-  border-color: rgba(212, 175, 55, 0.5);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.08), 0 0 40px rgba(212, 175, 55, 0.06);
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.09), 0 18px 60px rgba(0, 0, 0, 0.5), 0 0 46px rgba(212, 175, 55, 0.07);
 }
 .genius-input {
   flex: 1;
@@ -112,32 +169,58 @@
   border: none;
   outline: none;
   color: #fff;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 300;
-  padding: 0.55rem 0;
+  font-family: var(--font-body);
+  font-size: 1rem; /* 16px — prevents iOS zoom-on-focus */
+  font-weight: 400;
+  padding: 0.6rem 0;
 }
 .genius-input::placeholder { color: #6b7280; }
 .genius-input:disabled { opacity: 0.6; }
 
 .genius-send {
   flex-shrink: 0;
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 999px;
+  border-radius: 0.85rem;
   cursor: pointer;
-  font-size: 1.15rem;
-  font-weight: 800;
   color: #000;
   background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
-  transition: box-shadow 0.2s, opacity 0.2s;
+  transition: box-shadow 0.2s, transform 0.2s, opacity 0.2s;
 }
-.genius-send:hover:not(:disabled) { box-shadow: 0 0 24px rgba(212, 175, 55, 0.4); }
-.genius-send:disabled { opacity: 0.45; cursor: default; }
+.genius-send:hover:not(:disabled) { box-shadow: 0 0 24px rgba(212, 175, 55, 0.4); transform: translateY(-1px); }
+.genius-send:disabled { opacity: 0.4; cursor: default; }
+
+/* --- Suggestion chips (resting only) -------------------------------------- */
+.genius-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  opacity: 0;
+  animation: heroFadeIn 0.9s ease 1s forwards;
+}
+.genius-chip {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 0.5rem 1.05rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.genius-chip:hover {
+  color: var(--gold-light);
+  border-color: rgba(212, 175, 55, 0.45);
+  background: rgba(212, 175, 55, 0.07);
+  transform: translateY(-1px);
+}
 
 .genius-error {
   font-size: 0.8rem;
@@ -163,9 +246,10 @@
 }
 .genius-confirm-icon { font-size: 2.6rem; color: var(--gold); margin-bottom: 1rem; }
 .genius-confirm-title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-weight: 700;
   font-size: 1.5rem;
+  letter-spacing: -0.02em;
   color: #fff;
   margin-bottom: 0.75rem;
 }
@@ -177,12 +261,19 @@
   border-radius: 999px;
   background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
   color: #000;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 900;
-  letter-spacing: 0.2em;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 .genius-confirm-cta:hover { transform: scale(1.04); box-shadow: 0 0 28px rgba(212, 175, 55, 0.35); }
+
+/* Mobile */
+@media (max-width: 480px) {
+  .genius-thread { max-height: 48vh; }
+  .genius-chips { gap: 0.45rem; }
+  .genius-chip { font-size: 0.76rem; padding: 0.42rem 0.85rem; }
+}

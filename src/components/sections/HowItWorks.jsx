@@ -14,7 +14,7 @@ export default function HowItWorks() {
     <section id="process" style={{ padding: '5rem 1.5rem', background: 'var(--obsidian)' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         <div style={{ marginBottom: '4rem' }}>
-          <span className="section-label"><span className="accent-line"></span>How We Work</span>
+          <span className="section-label"><span className="accent-line"></span>02 · How we work</span>
           <h2 className="font-display" style={{ fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 700, marginTop: '0.75rem', letterSpacing: '-0.02em' }}>
             From discovery to <span className="grad-gold">hand-off in weeks,</span><br />not months.
           </h2>

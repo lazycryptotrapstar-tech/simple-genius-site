@@ -5,8 +5,8 @@ import Logo from './Logo';
 function Wordmark({ fontSize = '1.25rem' }) {
   return (
     <span style={{ display: 'flex', alignItems: 'baseline', gap: '0.18em', lineHeight: 1 }}>
-      <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize, fontWeight: 900, color: '#fff', letterSpacing: '-0.02em' }}>Simple</span>
-      <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize, fontWeight: 900, background: 'linear-gradient(135deg,#F5E07A,#D4AF37,#AA8A2E)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', letterSpacing: '-0.02em' }}>Genius.</span>
+      <span style={{ fontFamily: 'var(--font-display)', fontSize, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Simple</span>
+      <span style={{ fontFamily: 'var(--font-display)', fontSize, fontWeight: 700, background: 'linear-gradient(135deg,#F5E07A,#D4AF37,#AA8A2E)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', letterSpacing: '-0.02em' }}>Genius.</span>
     </span>
   );
 }

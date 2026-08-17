@@ -2,7 +2,7 @@
    global.css — base body styles, typography, and shared utility classes
    ported from the original index.html <style> block (values preserved).
 
-   NOTE: Google Fonts (Cormorant Garamond, Plus Jakarta Sans, Montserrat) are
+   NOTE: Google Fonts (Space Grotesk, Plus Jakarta Sans, JetBrains Mono) are
    loaded via <link> + preconnect in index.html <head> for performance, so they
    are intentionally not @imported here.
 ---------------------------------------------------------------------------- */
@@ -12,17 +12,18 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-body);
   background-color: var(--obsidian);
   color: #ffffff;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
-::selection { background: #4c1d95; color: #fff; }
+::selection { background: rgba(212,175,55,0.28); color: #fff; }
 
 /* Typography helpers */
-.font-display { font-family: 'Montserrat', sans-serif; }
-h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
-.font-serif { font-family: 'Cormorant Garamond', serif; }
+.font-display { font-family: var(--font-display); }
+h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
 
 .text-gold { color: var(--gold); }
 .text-gold-lt { color: var(--gold-light); }
@@ -66,7 +67,7 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
 .card:hover { border-color: var(--lime); box-shadow: 0 0 40px var(--lime-glow), 0 0 0 1px rgba(92,184,50,0.15); transform: translateY(-3px); }
 
 /* Section bits */
-.section-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.35em; text-transform: uppercase; color: var(--lime); }
+.section-label { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lime); }
 .accent-line { display: inline-block; width: 32px; height: 2px; background: var(--lime); margin-right: 12px; vertical-align: middle; }
 .step-connector { width: 1px; background: linear-gradient(to bottom, var(--lime), transparent); margin: 0 auto; height: 40px; }
 .why-card { border-left: 2px solid var(--lime); padding-left: 1.5rem; }
@@ -85,7 +86,7 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
 .stat-item { padding: 0 2.5rem 0 0; }
 .stat-item:first-child { padding-left: 0; }
 .stat-num { font-size: 2.5rem; font-weight: 900; line-height: 1; }
-.stat-label { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: #9ca3af; margin-top: 0.35rem; font-family: 'Montserrat', sans-serif; font-weight: 700; white-space: nowrap; }
+.stat-label { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: #9ca3af; margin-top: 0.35rem; font-family: var(--font-mono); font-weight: 500; white-space: nowrap; }
 .stat-divider { width: 1px; height: 44px; background: rgba(255,255,255,0.08); flex-shrink: 0; margin-right: 2.5rem; }
 
 /* Watermark (fixed background logo instance) */
@@ -108,7 +109,7 @@ nav { position: fixed; top: 0; width: 100%; z-index: 50; }
 .mob-menu-open .mob-menu-btn span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .mob-nav-drawer { display: none; position: fixed; top: 5.5rem; left: 0; right: 0; background: rgba(5,5,5,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1rem 2rem 2rem; z-index: 49; flex-direction: column; }
 .mob-nav-drawer.open { display: flex; }
-.mob-nav-drawer a { font-family: "Montserrat", sans-serif; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #9ca3af; text-decoration: none; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); transition: color 0.2s; }
+.mob-nav-drawer a { font-family: var(--font-display); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #9ca3af; text-decoration: none; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); transition: color 0.2s; }
 .mob-nav-drawer a:last-child { border-bottom: none; }
 .mob-nav-drawer a:hover { color: #D4AF37; }
 .mob-cta-row { margin-top: 1.25rem; }

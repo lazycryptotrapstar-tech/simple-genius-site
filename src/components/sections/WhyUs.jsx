@@ -15,7 +15,7 @@ export default function WhyUs() {
       <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 20% 50%, var(--amethyst-dim) 0%, transparent 55%)', pointerEvents: 'none' }}></div>
       <div style={{ maxWidth: 1280, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <div style={{ marginBottom: '4rem' }}>
-          <span className="section-label"><span className="accent-line"></span>Why Simple Genius</span>
+          <span className="section-label"><span className="accent-line"></span>03 · Why Simple Genius</span>
           <h2 className="font-display" style={{ fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 700, marginTop: '0.75rem', letterSpacing: '-0.02em' }}>
             We're operators, <span className="grad-amethyst">not theorists.</span>
           </h2>
