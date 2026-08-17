@@ -3,10 +3,10 @@
  * ported verbatim from the original index.html PROCESS section.
  */
 const STEPS = [
-  { n: '01 — Discovery', color: 'var(--gold)', accent: true, title: 'Learn your process', body: 'We learn your process, your data, and where the friction is. No assumptions.' },
-  { n: '02 — Build', color: 'var(--lime)', accent: false, title: 'Move fast', body: "Most initial systems are live within 1–2 weeks. We don't do six-month roadmaps before writing a line of code." },
-  { n: '03 — Refine', color: 'var(--lime)', accent: false, title: 'Iterate on real usage', body: 'We iterate based on real usage, not assumptions. The system improves as your team uses it.' },
-  { n: '04 — Hand Off', color: 'var(--gold)', accent: true, title: 'You own it', body: 'You own it. We train your team and document everything. No dependency, no black boxes.' },
+  { n: 'Step 1 · Discovery', color: 'var(--gold)', accent: true, title: 'Learn your process', body: 'We learn your process, your data, and where the friction is. No assumptions.' },
+  { n: 'Step 2 · Build', color: 'var(--lime)', accent: false, title: 'Move fast', body: "Most initial systems are live within 1–2 weeks. We don't do six-month roadmaps before writing a line of code." },
+  { n: 'Step 3 · Refine', color: 'var(--lime)', accent: false, title: 'Iterate on real usage', body: 'We iterate based on real usage, not assumptions. The system improves as your team uses it.' },
+  { n: 'Step 4 · Hand off', color: 'var(--gold)', accent: true, title: 'You own it', body: 'You own it. We train your team and document everything. No dependency, no black boxes.' },
 ];
 
 export default function HowItWorks() {

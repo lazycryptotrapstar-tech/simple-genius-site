@@ -14,8 +14,18 @@ const SUGGESTIONS = [
 ];
 // ---------------------------------------------------------------------------
 
-/** Hide the machine-readable closing brief (fenced ```json block) from the visible thread. */
-const displayText = (t) => (t || '').replace(/```(?:json)?[\s\S]*?(?:```|$)/g, '').trimEnd();
+/**
+ * Clean assistant text for display: hide the machine-readable closing brief
+ * (fenced ```json block) and strip any markdown tells that slip through the
+ * prompt's plain-text rule (# headings, ** bold, em dashes).
+ */
+const displayText = (t) =>
+  (t || '')
+    .replace(/```(?:json)?[\s\S]*?(?:```|$)/g, '')
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/\*\*/g, '')
+    .replace(/\s+—\s+/g, ', ')
+    .trimEnd();
 
 const SendIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">

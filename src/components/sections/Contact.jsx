@@ -11,7 +11,7 @@ export default function Contact() {
         <p style={{ fontSize: '1.05rem', color: '#9ca3af', lineHeight: 1.8, marginTop: '1.5rem', fontWeight: 300 }}>
           Prefer to talk to a human first? Email{' '}
           <a href="mailto:hello@simplegenius.io" style={{ color: 'var(--gold)', textDecoration: 'none' }}>hello@simplegenius.io</a>
-          {' '}— a real person reads every message.
+          . A real person reads every message.
         </p>
       </div>
     </section>

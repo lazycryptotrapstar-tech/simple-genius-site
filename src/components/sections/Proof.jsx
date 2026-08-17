@@ -9,11 +9,11 @@ const PROOF_POINTS = [
   },
   {
     marker: 'end to end',
-    text: 'Ticketing built whole — inventory, checkout with integrated payments, and gate check-in at the door.',
+    text: 'Ticketing built whole: inventory, checkout with integrated payments, and gate check-in at the door.',
   },
   {
     marker: 'proven live',
-    text: 'AI outreach that drafts, sends, and answers replies inside guardrails — with a human in the loop where it matters.',
+    text: 'AI outreach that drafts, sends, and answers replies inside guardrails, with a human in the loop where it matters.',
   },
 ];
 
