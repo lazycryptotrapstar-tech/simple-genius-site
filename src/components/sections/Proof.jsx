@@ -28,11 +28,9 @@ export default function Proof() {
           </h2>
           <ul style={{ listStyle: 'none', marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1.4rem' }}>
             {PROOF_POINTS.map((p) => (
-              <li key={p.marker} style={{ display: 'flex', gap: '1rem', alignItems: 'baseline' }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.62rem', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--lime)', whiteSpace: 'nowrap', flexShrink: 0 }}>
-                  {p.marker}
-                </span>
-                <span style={{ fontSize: '0.95rem', color: '#c8cdd6', lineHeight: 1.7, fontWeight: 300 }}>{p.text}</span>
+              <li key={p.marker} className="proof-point">
+                <span className="proof-point-marker">{p.marker}</span>
+                <span className="proof-point-text">{p.text}</span>
               </li>
             ))}
           </ul>

@@ -16,7 +16,7 @@ export default function HowItWorks() {
         <div style={{ marginBottom: '4rem' }}>
           <span className="section-label"><span className="accent-line"></span>02 · How we work</span>
           <h2 className="font-display" style={{ fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 700, marginTop: '0.75rem', letterSpacing: '-0.02em' }}>
-            From discovery to <span className="grad-gold">hand-off in weeks,</span><br />not months.
+            From discovery to <span className="grad-gold">hand-off in weeks,</span> not months.
           </h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))', gap: '2rem' }}>

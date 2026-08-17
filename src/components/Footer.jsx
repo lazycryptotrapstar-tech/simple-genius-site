@@ -1,25 +1,13 @@
 /**
- * Footer — ported from the original index.html. Location (McKinney, TX), email,
- * and social links. LinkedIn and X remain "#" placeholders (Dee updates later).
+ * Footer — brand, location/email, link row, copyright. Row layout on desktop,
+ * centered column on mobile (see .footer-grid rules in global.css).
+ * LinkedIn and X remain "#" placeholders (Dee updates later).
  */
-const socialBase = {
-  fontSize: '0.6rem',
-  fontWeight: 800,
-  letterSpacing: '0.25em',
-  textTransform: 'uppercase',
-  color: '#6b7280',
-  textDecoration: 'none',
-  transition: 'color 0.2s',
-};
-
 export default function Footer() {
-  const hoverIn = (e) => (e.currentTarget.style.color = '#D4AF37');
-  const hoverOut = (e) => (e.currentTarget.style.color = '#6b7280');
-
   return (
     <footer className="footer-glow" style={{ padding: '3rem 1.5rem', borderTop: '1px solid rgba(255,255,255,0.04)', background: '#000' }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '2rem' }}>
-        <div>
+      <div className="footer-grid">
+        <div className="footer-brand">
           <div style={{ marginBottom: '0.5rem' }}>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: '#fff' }}>Simple </span>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', background: 'linear-gradient(135deg,#F5E07A,#D4AF37,#AA8A2E)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Genius.</span>
@@ -28,13 +16,15 @@ export default function Footer() {
             McKinney, TX &nbsp;·&nbsp; <a href="mailto:hello@simplegenius.io" style={{ color: '#6b7280', textDecoration: 'none' }}>hello@simplegenius.io</a>
           </p>
         </div>
-        <div style={{ display: 'flex', gap: '2.5rem' }}>
-          <a href="#top" style={{ ...socialBase, color: '#D4AF37' }}>Talk to Genius ↑</a>
-          <a href="#" style={socialBase} onMouseOver={hoverIn} onMouseOut={hoverOut}>LinkedIn</a>
-          <a href="#" style={socialBase} onMouseOver={hoverIn} onMouseOut={hoverOut}>X / Twitter</a>
-          <a href="mailto:hello@simplegenius.io" style={socialBase} onMouseOver={hoverIn} onMouseOut={hoverOut}>Email</a>
+
+        <div className="footer-links">
+          <a href="#top" className="footer-link footer-link--gold">Talk to Genius ↑</a>
+          <a href="#" className="footer-link">LinkedIn</a>
+          <a href="#" className="footer-link">X / Twitter</a>
+          <a href="mailto:hello@simplegenius.io" className="footer-link">Email</a>
         </div>
-        <p style={{ fontSize: '0.6rem', color: '#4b5563', letterSpacing: '0.1em' }}>© 2025 Simple Genius Consulting</p>
+
+        <p className="footer-copy">© 2025 Simple Genius Consulting</p>
       </div>
     </footer>
   );

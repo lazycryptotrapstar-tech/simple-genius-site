@@ -73,6 +73,39 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
 .why-card { border-left: 2px solid var(--lime); padding-left: 1.5rem; }
 .footer-glow { background: radial-gradient(ellipse at 50% 100%, rgba(92,184,50,0.07) 0%, transparent 60%); }
 
+/* Footer layout — row on desktop, centered column on mobile */
+.footer-grid {
+  max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap;
+  justify-content: space-between; align-items: center; gap: 2rem;
+}
+.footer-links { display: flex; align-items: center; flex-wrap: wrap; gap: 1.75rem; }
+.footer-link {
+  font-family: var(--font-mono); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #6b7280; text-decoration: none; white-space: nowrap;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: var(--gold); }
+.footer-link--gold { color: var(--gold); }
+.footer-copy { font-size: 0.6rem; color: #4b5563; letter-spacing: 0.1em; white-space: nowrap; }
+@media (max-width: 767px) {
+  .footer-grid { flex-direction: column; align-items: center; text-align: center; gap: 1.75rem; }
+  .footer-brand { display: flex; flex-direction: column; align-items: center; }
+  .footer-links { justify-content: center; gap: 1.1rem 1.5rem; }
+}
+
+/* Proof list — aligned marker column on desktop, stacked on mobile */
+.proof-point { display: flex; gap: 1rem; align-items: baseline; }
+.proof-point-marker {
+  font-family: var(--font-mono); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--lime); white-space: nowrap; flex-shrink: 0;
+  min-width: 98px;
+}
+.proof-point-text { font-size: 0.95rem; color: #c8cdd6; line-height: 1.7; font-weight: 300; }
+@media (max-width: 480px) {
+  .proof-point { flex-direction: column; gap: 0.35rem; }
+  .proof-point-marker { min-width: 0; }
+}
+
 /* Pills */
 .pill {
   border: 1px solid rgba(92,184,50,0.25); color: rgba(255,255,255,0.7); font-size: 0.7rem;
@@ -109,6 +142,10 @@ nav { position: fixed; top: 0; width: 100%; z-index: 50; }
   transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 .nav-book-link:hover { color: var(--gold-light); border-color: rgba(212,175,55,0.45); background: rgba(212,175,55,0.06); }
+@media (max-width: 420px) {
+  .nav-book-link { padding: 0.45rem 0.8rem; font-size: 0.6rem; letter-spacing: 0.06em; }
+  .nav-logo-clip, .nav-logo-clip svg { width: 44px; height: 44px; }
+}
 
 /* Proof section — framed live-demo card */
 .proof-frame {
