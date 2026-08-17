@@ -1,7 +1,6 @@
 /**
  * Footer — brand, location/email, link row, copyright. Row layout on desktop,
  * centered column on mobile (see .footer-grid rules in global.css).
- * LinkedIn and X remain "#" placeholders (Dee updates later).
  */
 export default function Footer() {
   return (
@@ -19,8 +18,6 @@ export default function Footer() {
 
         <div className="footer-links">
           <a href="#top" className="footer-link footer-link--gold">Talk to Genius ↑</a>
-          <a href="#" className="footer-link">LinkedIn</a>
-          <a href="#" className="footer-link">X / Twitter</a>
           <a href="mailto:hello@simplegenius.io" className="footer-link">Email</a>
         </div>
 
