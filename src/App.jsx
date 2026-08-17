@@ -3,7 +3,7 @@ import Watermark from './components/Watermark';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import Genius from './components/Genius/Genius';
-import Capabilities from './components/sections/Capabilities';
+import Proof from './components/sections/Proof';
 import HowItWorks from './components/sections/HowItWorks';
 import WhyUs from './components/sections/WhyUs';
 import Contact from './components/sections/Contact';
@@ -32,7 +32,7 @@ export default function App() {
         <Genius />
       </Hero>
 
-      <ScrollReveal><Capabilities /></ScrollReveal>
+      <ScrollReveal><Proof /></ScrollReveal>
 
       <ScrollReveal>
         <section style={{ padding: '3.5rem 0', background: 'var(--obsidian3)' }}>

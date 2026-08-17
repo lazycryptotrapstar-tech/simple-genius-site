@@ -101,6 +101,58 @@ nav { position: fixed; top: 0; width: 100%; z-index: 50; }
 .nav-logo-clip { flex-shrink: 0; width: 62px; height: 62px; }
 .nav-logo-clip svg { width: 62px; height: 62px; }
 
+/* Nav book-a-call link (the nav's one action) */
+.nav-book-link {
+  font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #9ca3af; text-decoration: none; white-space: nowrap;
+  padding: 0.55rem 1.1rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 999px;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.nav-book-link:hover { color: var(--gold-light); border-color: rgba(212,175,55,0.45); background: rgba(212,175,55,0.06); }
+
+/* Proof section — framed live-demo card */
+.proof-frame {
+  display: block; text-decoration: none; border-radius: 1rem; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.5);
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.proof-frame:hover {
+  border-color: rgba(212,175,55,0.4); transform: translateY(-3px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 46px rgba(212,175,55,0.08);
+}
+.proof-frame-bar {
+  display: flex; align-items: center; gap: 6px; padding: 0.65rem 0.9rem;
+  background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.proof-frame-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.14); }
+.proof-frame-url {
+  margin-left: 0.6rem; font-family: var(--font-mono); font-size: 0.66rem; font-weight: 400;
+  color: #9ca3af; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px; padding: 0.22rem 0.7rem;
+}
+.proof-frame-body { position: relative; padding: 1.4rem 1.4rem 1.6rem; }
+.proof-frame-body::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 80% 0%, rgba(168,85,247,0.08) 0%, transparent 55%);
+}
+.proof-mock { display: flex; gap: 0.9rem; }
+.proof-mock-side { display: flex; flex-direction: column; gap: 0.55rem; width: 54px; flex-shrink: 0; }
+.proof-mock-side span { height: 9px; border-radius: 4px; background: rgba(255,255,255,0.07); }
+.proof-mock-side span:first-child { background: rgba(212,175,55,0.35); }
+.proof-mock-main { flex: 1; display: flex; flex-direction: column; gap: 0.7rem; }
+.proof-mock-row { height: 11px; border-radius: 4px; background: rgba(255,255,255,0.06); }
+.proof-mock-row--wide { width: 70%; height: 14px; background: rgba(255,255,255,0.1); }
+.proof-mock-row--short { width: 45%; }
+.proof-mock-cards { display: flex; gap: 0.7rem; }
+.proof-mock-cards span { flex: 1; height: 46px; border-radius: 7px; background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.05); }
+.proof-mock-cards span:nth-child(2) { border-color: rgba(92,184,50,0.25); }
+.proof-frame-cta {
+  position: relative; display: inline-block; margin-top: 1.5rem;
+  font-family: var(--font-mono); font-size: 0.66rem; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold);
+}
+
 /* Mobile nav */
 .mob-menu-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
 .mob-menu-btn span { display: block; width: 22px; height: 2px; background: #9ca3af; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }

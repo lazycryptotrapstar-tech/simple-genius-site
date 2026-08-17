@@ -5,7 +5,6 @@
 const CARDS = [
   { title: 'We explain everything in plain English', body: "No jargon, no acronyms, no tech talk. We tell you what we're building, why it matters, and what to expect — in language that actually makes sense." },
   { title: 'We work with what you already have', body: 'Google Sheets, your existing CRM, your email platform — we build around your current tools. No need to buy new software or change how you work.' },
-  { title: "You'll see results fast", body: "Most of what we build is up and running in one to two weeks. You'll know quickly whether it's working — and we stick around to make sure it does." },
   { title: 'You own it. We hand it over.', body: "Everything we build belongs to you. We train your team, document how it works, and make sure you're never dependent on us to keep it running." },
 ];
 

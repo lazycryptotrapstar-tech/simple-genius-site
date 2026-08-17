@@ -29,6 +29,7 @@ export default function Footer() {
           </p>
         </div>
         <div style={{ display: 'flex', gap: '2.5rem' }}>
+          <a href="#top" style={{ ...socialBase, color: '#D4AF37' }}>Talk to Genius ↑</a>
           <a href="#" style={socialBase} onMouseOver={hoverIn} onMouseOut={hoverOut}>LinkedIn</a>
           <a href="#" style={socialBase} onMouseOver={hoverIn} onMouseOut={hoverOut}>X / Twitter</a>
           <a href="mailto:hello@simplegenius.io" style={socialBase} onMouseOver={hoverIn} onMouseOut={hoverOut}>Email</a>
