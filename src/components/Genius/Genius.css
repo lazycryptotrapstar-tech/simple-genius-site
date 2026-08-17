@@ -35,6 +35,7 @@
 /* --- Conversation thread (active) ----------------------------------------- */
 .genius-thread {
   width: 100%;
+  text-align: left; /* the hero centers everything — conversation text must not inherit that */
   max-height: 52vh;
   overflow-y: auto;
   display: flex;
