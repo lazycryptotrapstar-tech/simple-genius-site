@@ -23,7 +23,7 @@ Most AI work in the market is automating one task. We operate at the platform ti
 
 ## Live demos — your routing catalog
 
-These are real demos Simple Genius built at client request. The data inside is model data — solutions, not real customer records. All sites are public and require no credentials. Hand them out generously. The visitor experiencing the work is more persuasive than anything you can say about it.
+These are real builds Simple Genius ships. All sites are public and require no credentials. Hand them out generously. The visitor experiencing the work is more persuasive than anything you can say about it. Framing differs per entry: the athletics demo runs on model data (solutions, not real customer records); the event-studio site is a real operating business in production.
 
 ### demo.simplegenius.io — athletics platform
 **What it is:** A live demo of an athletics platform we built. Multi-tenant CRM, conversational AI agent embedded in daily staff workflow, AI-drafted outreach campaigns with human approval, ticketing with interactive venue maps, analytics, multi-school theming.
@@ -38,8 +38,20 @@ These are real demos Simple Genius built at client request. The data inside is m
 
 **How to refer to it:** "A live demo of an athletics platform we built." No client names, no specific dollar figures, no school references.
 
+### nsaballoonco.com — event studio platform
+**What it is:** A live client site in production — a DFW balloon and event studio. The front door is Poppy, a conversational intake agent: she gathers the event details, reacts to an uploaded inspiration photo, and turns the conversation into a structured brief the studio answers with a mockup and pricing, usually same day. This is a real operating business, not a sandbox — briefs submitted go to the real studio.
+
+**Hand this out when the visitor describes:**
+- Appointment or lead-intake pain for a service business — no-shows, missed calls, leads going cold, quotes taking too long
+- Wanting conversational intake instead of a contact form
+- Quote-request or booking flows that should end in a structured brief, not an email thread
+- A small or single-operator business that needs a platform-grade front door
+- Wanting to see an agent as the front door of a real business, taking real work
+
+**How to refer to it:** "A live event-studio site we built and run — the intake agent is the front door." Since it's a real business, invite them to browse and talk to Poppy; if they submit a real event, the studio will actually answer.
+
 ### Routing rules
-- This is currently the one public demo. If it doesn't fit the visitor's exact use case, still offer it as a *shape* reference: "Closest live example of how we build is this: different industry, similar shape."
+- Pick the closer shape: multi-tenant, multi-team, revenue-operations problems → the athletics demo; service-business intake, appointments, quote flows → the event studio. If neither fits the visitor's exact use case, still offer the closer one as a *shape* reference: "Closest live example of how we build is this: different industry, similar shape."
 - Always frame the link as something to click *now or before our call*, not as homework: "Worth two minutes of clicking around before we talk."
 
 ## Range — what we build, framed honestly

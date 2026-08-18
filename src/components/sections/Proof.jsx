@@ -17,6 +17,25 @@ const PROOF_POINTS = [
   },
 ];
 
+const DEMOS = [
+  {
+    url: 'https://demo.simplegenius.io',
+    urlLabel: 'demo.simplegenius.io',
+    kicker: 'Athletics platform — CRM, AI outreach, ticketing',
+    cta: 'Click around the live demo ↗',
+    ariaLabel: 'Open the live athletics platform demo',
+    accent: null,
+  },
+  {
+    url: 'https://nsaballoonco.com',
+    urlLabel: 'nsaballoonco.com',
+    kicker: 'Event studio — AI intake agent, live client site',
+    cta: 'Meet Poppy on the live site ↗',
+    ariaLabel: 'Open the live NSA Balloon Co site',
+    accent: 'rose',
+  },
+];
+
 export default function Proof() {
   return (
     <section id="proof" style={{ padding: '5.5rem 1.5rem', background: 'var(--obsidian)' }}>
@@ -36,30 +55,41 @@ export default function Proof() {
           </ul>
         </div>
 
-        <a href="https://demo.simplegenius.io" target="_blank" rel="noreferrer" className="proof-frame" aria-label="Open the live demo">
-          <div className="proof-frame-bar">
-            <span className="proof-frame-dot"></span>
-            <span className="proof-frame-dot"></span>
-            <span className="proof-frame-dot"></span>
-            <span className="proof-frame-url">demo.simplegenius.io</span>
-          </div>
-          <div className="proof-frame-body">
-            <div className="proof-mock">
-              <div className="proof-mock-side">
-                <span></span><span></span><span></span><span></span>
+        <div className="proof-frames">
+          {DEMOS.map((d) => (
+            <a
+              key={d.urlLabel}
+              href={d.url}
+              target="_blank"
+              rel="noreferrer"
+              className={`proof-frame${d.accent ? ` proof-frame--${d.accent}` : ''}`}
+              aria-label={d.ariaLabel}
+            >
+              <div className="proof-frame-bar">
+                <span className="proof-frame-dot"></span>
+                <span className="proof-frame-dot"></span>
+                <span className="proof-frame-dot"></span>
+                <span className="proof-frame-url">{d.urlLabel}</span>
               </div>
-              <div className="proof-mock-main">
-                <div className="proof-mock-row proof-mock-row--wide"></div>
-                <div className="proof-mock-cards">
-                  <span></span><span></span><span></span>
+              <div className="proof-frame-body">
+                <div className="proof-mock">
+                  <div className="proof-mock-side">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div className="proof-mock-main">
+                    <div className="proof-mock-row proof-mock-row--wide"></div>
+                    <div className="proof-mock-cards">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div className="proof-mock-row proof-mock-row--short"></div>
+                  </div>
                 </div>
-                <div className="proof-mock-row"></div>
-                <div className="proof-mock-row proof-mock-row--short"></div>
+                <span className="proof-frame-kicker">{d.kicker}</span>
+                <span className="proof-frame-cta">{d.cta}</span>
               </div>
-            </div>
-            <span className="proof-frame-cta">Click around the live demo ↗</span>
-          </div>
-        </a>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );
