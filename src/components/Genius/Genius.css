@@ -350,3 +350,16 @@
   .genius-chips { gap: 0.45rem; }
   .genius-chip { font-size: 0.76rem; padding: 0.42rem 0.85rem; }
 }
+
+/* Mobile chat layout — the hero is a fixed-height column (see global.css), so
+   the thread flexes to whatever is left between the logo and the composer
+   instead of a fixed share of the screen. */
+@media (max-width: 767px) {
+  body.genius-chat .genius--active { flex: 1 1 auto; min-height: 0; gap: 0.75rem; }
+  body.genius-chat .genius-thread {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+    overscroll-behavior: contain; /* thread scroll must not drag the page along */
+  }
+}

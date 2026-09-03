@@ -113,6 +113,35 @@ export default function Genius() {
     if (hasConversation) window.scrollTo({ top: 0, behavior: 'instant' });
   }, [hasConversation]);
 
+  // Mobile chat layout. iOS never shrinks the page for the keyboard — it just
+  // pans to the focused input, which left the logo off-screen and a dead strip
+  // under the composer. While the composer is focused, size the hero to the
+  // visible viewport (--vvh) and hold the page at the top so logo / thread /
+  // composer stack exactly into the space above the keyboard. Outside focus the
+  // var is dropped so browser-chrome show/hide can't resize the hero mid-scroll.
+  useEffect(() => {
+    const chatting = hasConversation && !briefEmitted;
+    document.body.classList.toggle('genius-chat', chatting);
+    const vv = window.visualViewport;
+    const root = document.documentElement;
+    if (!chatting || !vv) return () => document.body.classList.remove('genius-chat');
+    const sync = () => {
+      if (document.activeElement === inputRef.current) {
+        root.style.setProperty('--vvh', `${Math.round(vv.height)}px`);
+        window.scrollTo(0, 0);
+      } else {
+        root.style.removeProperty('--vvh');
+      }
+    };
+    sync();
+    vv.addEventListener('resize', sync);
+    return () => {
+      vv.removeEventListener('resize', sync);
+      root.style.removeProperty('--vvh');
+      document.body.classList.remove('genius-chat');
+    };
+  }, [hasConversation, briefEmitted]);
+
   // Auto-grow the composer with the draft, capped so it never eats the thread.
   const autoGrow = (el) => {
     el.style.height = 'auto';

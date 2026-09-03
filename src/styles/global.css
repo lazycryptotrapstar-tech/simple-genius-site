@@ -290,3 +290,22 @@ body.genius-active .hero-logo-mark {
 @media (max-width: 480px) {
   .hero-logo-mark { width: 120px !important; height: 120px !important; margin-bottom: 1.5rem !important; }
 }
+
+/* Mobile chat layout (body.genius-chat, set by Genius while a conversation is
+   open). The hero stops centering and becomes a fixed-height app column sized
+   to the visible viewport: --vvh is the keyboard-aware visualViewport height
+   (set only while the composer is focused), 100svh otherwise. Logo pinned
+   under the 4.5rem fixed nav, thread fills the middle, composer at the bottom. */
+@media (max-width: 767px) {
+  body.genius-chat #top {
+    height: var(--vvh, 100svh);
+    min-height: 0;
+    justify-content: flex-start;
+    padding: 5rem 1.25rem 0.6rem !important;
+  }
+  body.genius-chat .hero-logo-mark {
+    width: 60px !important;
+    height: 60px !important;
+    margin-bottom: 0.6rem !important;
+  }
+}
