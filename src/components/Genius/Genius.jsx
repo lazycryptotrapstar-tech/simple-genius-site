@@ -40,9 +40,10 @@ const SendIcon = () => (
  *  - Closing: confirmation card once the brief has been emitted to n8n
  */
 export default function Genius() {
-  const { messages, sendMessage, isStreaming, briefEmitted, error } = useGenius();
+  const { messages, sendMessage, isStreaming, briefEmitted, error, reset } = useGenius();
   const [draft, setDraft] = useState('');
   const threadRef = useRef(null);
+  const inputRef = useRef(null);
 
   const hasConversation = messages.length > 0;
   const awaitingFirstToken =
@@ -54,6 +55,10 @@ export default function Genius() {
       threadRef.current.scrollTop = threadRef.current.scrollHeight;
     }
   }, [messages]);
+
+  // Announce completed replies to assistive tech (announcing per-token would be noise).
+  const lastAssistant = [...messages].reverse().find((m) => m.role === 'assistant' && m.content);
+  const announcement = !isStreaming && lastAssistant ? displayText(lastAssistant.content) : '';
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,12 +73,18 @@ export default function Genius() {
     sendMessage(text);
   };
 
+  const handleReset = () => {
+    reset();
+    setDraft('');
+  };
+
   // --- Closing state --------------------------------------------------------
   if (briefEmitted) {
     return (
       <div className="genius genius--closing">
+        <h1 className="sr-only">Simple Genius — AI operational platforms</h1>
         <div className="genius-confirm-card">
-          <div className="genius-confirm-icon">✦</div>
+          <div className="genius-confirm-icon" aria-hidden="true">✦</div>
           <h2 className="genius-confirm-title">We've got your details.</h2>
           <p className="genius-confirm-body">
             The Simple Genius team will be in touch within one business day.
@@ -83,6 +94,9 @@ export default function Genius() {
               Grab a time now →
             </a>
           )}
+          <button type="button" className="genius-restart" onClick={handleReset}>
+            Start a new conversation
+          </button>
         </div>
       </div>
     );
@@ -91,14 +105,20 @@ export default function Genius() {
   // --- Resting / Active states ---------------------------------------------
   return (
     <div className={`genius ${hasConversation ? 'genius--active' : 'genius--resting'}`}>
-      {!hasConversation && (
+      {!hasConversation ? (
         <div className="genius-intro">
           <h1 className="genius-headline">What are you trying to build?</h1>
+          <p className="genius-subline">
+            Simple Genius builds AI-powered operational platforms: custom CRMs, intake
+            agents, and workflow systems that run your day-to-day — and that you own.
+          </p>
         </div>
+      ) : (
+        <h1 className="sr-only">Talk to Genius — the Simple Genius intake agent</h1>
       )}
 
       {hasConversation && (
-        <div className="genius-thread" ref={threadRef}>
+        <div className="genius-thread" ref={threadRef} tabIndex={0}>
           {messages.map((m, i) => {
             if (m.role === 'user') {
               return (
@@ -133,9 +153,12 @@ export default function Genius() {
         </div>
       )}
 
+      <div className="sr-only" aria-live="polite">{announcement}</div>
+
       <form className="genius-input-row" onSubmit={handleSubmit}>
         <SpotlightCard className="genius-input-shell">
           <input
+            ref={inputRef}
             className="genius-input"
             type="text"
             value={draft}
@@ -143,7 +166,6 @@ export default function Genius() {
             placeholder={PLACEHOLDER_TEXT}
             aria-label="Message Genius"
             autoComplete="off"
-            disabled={isStreaming}
           />
           <MagneticButton
             type="submit"
@@ -157,16 +179,28 @@ export default function Genius() {
       </form>
 
       {!hasConversation && (
-        <div className="genius-chips" role="list">
-          {SUGGESTIONS.map((s) => (
-            <button key={s} type="button" className="genius-chip" onClick={() => handleSuggestion(s)}>
-              {s}
-            </button>
-          ))}
-        </div>
+        <>
+          <ul className="genius-chips">
+            {SUGGESTIONS.map((s) => (
+              <li key={s}>
+                <button type="button" className="genius-chip" onClick={() => handleSuggestion(s)}>
+                  {s}
+                </button>
+              </li>
+            ))}
+          </ul>
+          <p className="genius-notice">
+            Genius is an AI agent. Conversations go to the Simple Genius team.{' '}
+            <a href="/privacy.html">Privacy</a>
+          </p>
+        </>
       )}
 
-      {error && <p className="genius-error">{error}</p>}
+      {error && (
+        <p className="genius-error" role="alert">
+          {error} Or email <a href="mailto:hello@simplegenius.io">hello@simplegenius.io</a> instead.
+        </p>
+      )}
     </div>
   );
 }

@@ -11,17 +11,18 @@ export default function Footer() {
             <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: '#fff' }}>Simple </span>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', background: 'linear-gradient(135deg,#F5E07A,#D4AF37,#AA8A2E)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Genius.</span>
           </div>
-          <p style={{ fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#6b7280' }}>
-            McKinney, TX &nbsp;·&nbsp; <a href="mailto:hello@simplegenius.io" style={{ color: '#6b7280', textDecoration: 'none' }}>hello@simplegenius.io</a>
+          <p style={{ fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#9ca3af' }}>
+            McKinney, TX &nbsp;·&nbsp; <a href="mailto:hello@simplegenius.io" style={{ color: '#9ca3af', textDecoration: 'none' }}>hello@simplegenius.io</a>
           </p>
         </div>
 
         <div className="footer-links">
           <a href="#top" className="footer-link footer-link--gold">Talk to Genius ↑</a>
           <a href="mailto:hello@simplegenius.io" className="footer-link">Email</a>
+          <a href="/privacy.html" className="footer-link">Privacy</a>
         </div>
 
-        <p className="footer-copy">© 2025 Simple Genius Consulting</p>
+        <p className="footer-copy">© {new Date().getFullYear()} Simple Genius Consulting</p>
       </div>
     </footer>
   );

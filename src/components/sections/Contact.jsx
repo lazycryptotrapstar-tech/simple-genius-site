@@ -8,11 +8,20 @@ export default function Contact() {
       <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 100%, rgba(92,184,50,0.06) 0%, transparent 55%)', pointerEvents: 'none' }}></div>
       <div style={{ maxWidth: 640, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
         <span className="section-label"><span className="accent-line"></span>04 · Prefer a human?</span>
+        <h2 className="sr-only">Talk to a human</h2>
         <p style={{ fontSize: '1.05rem', color: '#9ca3af', lineHeight: 1.8, marginTop: '1.5rem', fontWeight: 300 }}>
           Prefer to talk to a human first? Email{' '}
           <a href="mailto:hello@simplegenius.io" style={{ color: 'var(--gold)', textDecoration: 'none' }}>hello@simplegenius.io</a>
           . A real person reads every message.
         </p>
+        <a
+          href="https://cal.com/dee-chitman-kelly-los110/30min"
+          target="_blank"
+          rel="noreferrer"
+          className="cta-pill"
+        >
+          Book a call ↗
+        </a>
       </div>
     </section>
   );

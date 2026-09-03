@@ -25,6 +25,8 @@ const DEMOS = [
     cta: 'Click around the live demo ↗',
     ariaLabel: 'Open the live athletics platform demo',
     accent: null,
+    shot: '/shots/athletics-demo.jpg',
+    shotAlt: 'Screenshot of the live athletics platform demo',
   },
   {
     url: 'https://nsaballoonco.com',
@@ -33,6 +35,8 @@ const DEMOS = [
     cta: 'Meet Poppy on the live site ↗',
     ariaLabel: 'Open the live NSA Balloon Co site',
     accent: 'rose',
+    shot: '/shots/nsa-balloon.jpg',
+    shotAlt: 'Screenshot of the live NSA Balloon Co event studio site',
   },
 ];
 
@@ -72,18 +76,14 @@ export default function Proof() {
                 <span className="proof-frame-url">{d.urlLabel}</span>
               </div>
               <div className="proof-frame-body">
-                <div className="proof-mock">
-                  <div className="proof-mock-side">
-                    <span></span><span></span><span></span>
-                  </div>
-                  <div className="proof-mock-main">
-                    <div className="proof-mock-row proof-mock-row--wide"></div>
-                    <div className="proof-mock-cards">
-                      <span></span><span></span><span></span>
-                    </div>
-                    <div className="proof-mock-row proof-mock-row--short"></div>
-                  </div>
-                </div>
+                <img
+                  className="proof-shot"
+                  src={d.shot}
+                  alt={d.shotAlt}
+                  width="1280"
+                  height="800"
+                  loading="lazy"
+                />
                 <span className="proof-frame-kicker">{d.kicker}</span>
                 <span className="proof-frame-cta">{d.cta}</span>
               </div>

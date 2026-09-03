@@ -1,12 +1,26 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 /**
  * ScrollReveal — fades + lifts its children into view once, using the site's
  * signature cubic-bezier(0.16, 1, 0.3, 1) easing.
  *
+ * Renders a plain div during server-side prerendering (so crawlers get fully
+ * visible content, no opacity:0 inline styles) and for visitors who prefer
+ * reduced motion.
+ *
  * Props: children, className, plus any extra props forwarded to the wrapper.
  */
 export default function ScrollReveal({ children, className = '', ...props }) {
+  const reduceMotion = useReducedMotion();
+
+  if (typeof window === 'undefined' || reduceMotion) {
+    return (
+      <div className={className} {...props}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <motion.div
       className={className}

@@ -18,7 +18,7 @@ function Wordmark({ fontSize = '1.15rem' }) {
  */
 export default function Nav() {
   return (
-    <nav>
+    <nav aria-label="Primary">
       <div className="nav-inner">
         <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem', height: '4.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 0, textDecoration: 'none' }}>

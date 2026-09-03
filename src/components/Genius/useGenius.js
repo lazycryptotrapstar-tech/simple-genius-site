@@ -1,5 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
-import { GENIUS_SYSTEM_PROMPT } from './systemPrompt';
+import { useState, useRef, useCallback, useEffect } from 'react';
 
 const GENIUS_ENDPOINT = '/api/genius';
 const BRIEF_ENDPOINT = '/api/genius/brief';
@@ -7,10 +6,17 @@ const BRIEF_ENDPOINT = '/api/genius/brief';
 /**
  * Try to extract a closing JSON brief from the end of an assistant message.
  * Genius's closing behavior emits the brief as a fenced ```json block (preferred)
- * or as a bare trailing {...} object. Returns the parsed object, or null.
+ * or as a bare trailing {...} object. Only objects that carry both a `prospect`
+ * and a `classification` count — anything else (stray braces in prose, partial
+ * output from a dropped stream) is ignored. Returns the parsed object, or null.
  */
 function extractBrief(text) {
   if (!text) return null;
+
+  const looksLikeBrief = (obj) =>
+    obj && typeof obj === 'object' && !Array.isArray(obj) &&
+    obj.prospect && typeof obj.prospect === 'object' &&
+    obj.classification && typeof obj.classification === 'object';
 
   // 1) Fenced ```json ... ``` block (last one wins).
   const fenceRe = /```(?:json)?\s*([\s\S]*?)```/gi;
@@ -20,7 +26,7 @@ function extractBrief(text) {
   if (lastFenced) {
     try {
       const obj = JSON.parse(lastFenced);
-      if (obj && typeof obj === 'object') return obj;
+      if (looksLikeBrief(obj)) return obj;
     } catch { /* fall through */ }
   }
 
@@ -37,7 +43,7 @@ function extractBrief(text) {
           const candidate = text.slice(i, end + 1);
           try {
             const obj = JSON.parse(candidate);
-            if (obj && typeof obj === 'object') return obj;
+            if (looksLikeBrief(obj)) return obj;
           } catch { /* not valid JSON, give up */ }
           break;
         }
@@ -56,6 +62,7 @@ function extractBrief(text) {
  *   isStreaming   — true while a reply is streaming in
  *   briefEmitted  — true once a closing JSON brief was POSTed to n8n
  *   error         — last transport error message, or null
+ *   reset         — clear the conversation and start over
  */
 export function useGenius() {
   const [messages, setMessages] = useState([]);
@@ -63,10 +70,15 @@ export function useGenius() {
   const [briefEmitted, setBriefEmitted] = useState(false);
   const [error, setError] = useState(null);
   const briefSentRef = useRef(false);
+  const streamingRef = useRef(false);
+  const abortRef = useRef(null);
+
+  // Cancel any in-flight stream when the component unmounts.
+  useEffect(() => () => abortRef.current?.abort(), []);
 
   const sendMessage = useCallback(async (text) => {
     const trimmed = (text || '').trim();
-    if (!trimmed || isStreaming) return;
+    if (!trimmed || streamingRef.current) return;
 
     setError(null);
     const userMsg = { role: 'user', content: trimmed };
@@ -74,7 +86,11 @@ export function useGenius() {
     // Snapshot the outgoing history (prior turns + this user turn) for the request.
     const outgoing = [...messages, userMsg];
     setMessages((prev) => [...prev, userMsg, { role: 'assistant', content: '' }]);
+    streamingRef.current = true;
     setIsStreaming(true);
+
+    const controller = new AbortController();
+    abortRef.current = controller;
 
     let assistantText = '';
 
@@ -82,11 +98,13 @@ export function useGenius() {
       const res = await fetch(GENIUS_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: outgoing, system: GENIUS_SYSTEM_PROMPT }),
+        body: JSON.stringify({ messages: outgoing }),
+        signal: controller.signal,
       });
 
       if (!res.ok || !res.body) {
-        throw new Error(`Genius is unavailable (status ${res.status}).`);
+        const serverMsg = await res.json().then((j) => j?.error).catch(() => null);
+        throw new Error(serverMsg || `Genius is unavailable right now (status ${res.status}).`);
       }
 
       const reader = res.body.getReader();
@@ -123,6 +141,7 @@ export function useGenius() {
         }
       }
     } catch (err) {
+      if (controller.signal.aborted) return; // unmounted or reset — no state updates
       setError(err.message || 'Something went wrong talking to Genius.');
       setMessages((prev) => {
         const next = [...prev];
@@ -136,6 +155,7 @@ export function useGenius() {
         return next;
       });
     } finally {
+      streamingRef.current = false;
       setIsStreaming(false);
     }
 
@@ -154,7 +174,17 @@ export function useGenius() {
         setBriefEmitted(true);
       }
     }
-  }, [messages, isStreaming]);
+  }, [messages]);
 
-  return { messages, sendMessage, isStreaming, briefEmitted, error };
+  const reset = useCallback(() => {
+    abortRef.current?.abort();
+    briefSentRef.current = false;
+    streamingRef.current = false;
+    setMessages([]);
+    setIsStreaming(false);
+    setBriefEmitted(false);
+    setError(null);
+  }, []);
+
+  return { messages, sendMessage, isStreaming, briefEmitted, error, reset };
 }

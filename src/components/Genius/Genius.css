@@ -32,6 +32,14 @@
   text-align: center;
   color: #fff;
 }
+.genius-subline {
+  max-width: 560px;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  font-weight: 300;
+  text-align: center;
+  color: #b7bdc9;
+}
 /* --- Conversation thread (active) ----------------------------------------- */
 .genius-thread {
   width: 100%;
@@ -166,8 +174,7 @@
   font-weight: 400;
   padding: 0.6rem 0;
 }
-.genius-input::placeholder { color: #6b7280; }
-.genius-input:disabled { opacity: 0.6; }
+.genius-input::placeholder { color: #9ca3af; }
 
 .genius-send {
   flex-shrink: 0;
@@ -192,6 +199,9 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
   opacity: 0;
   animation: heroFadeIn 0.9s ease 1s forwards;
 }
@@ -219,6 +229,19 @@
   color: #f87171;
   text-align: center;
 }
+.genius-error a { color: #fca5a5; }
+
+/* AI disclosure microcopy under the composer (resting only) */
+.genius-notice {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: #9ca3af;
+  text-align: center;
+  opacity: 0;
+  animation: heroFadeIn 0.9s ease 1.2s forwards;
+}
+.genius-notice a { color: #9ca3af; text-decoration: underline; }
+.genius-notice a:hover { color: var(--gold-light); }
 
 /* --- Closing confirmation ------------------------------------------------- */
 .genius--closing { width: 100%; }
@@ -262,6 +285,21 @@
   transition: transform 0.2s, box-shadow 0.2s;
 }
 .genius-confirm-cta:hover { transform: scale(1.04); box-shadow: 0 0 28px rgba(212, 175, 55, 0.35); }
+.genius-restart {
+  display: block;
+  margin: 1.4rem auto 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  transition: color 0.2s;
+}
+.genius-restart:hover { color: var(--gold-light); }
 
 /* Mobile */
 @media (max-width: 480px) {

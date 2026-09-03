@@ -7,6 +7,10 @@ webhook. Claude is called server-side through a Cloudflare Pages Function so the
 API key never reaches the browser; the brief is forwarded to n8n through a second
 function authenticated with a shared secret.
 
+The Genius system prompt lives server-side in `functions/_lib/geniusPrompt.js`
+and never ships to the browser. Both API functions validate input, enforce
+same-site Origin, cap payload sizes, and never echo upstream error bodies.
+
 ## Local development
 
 ```bash
@@ -21,9 +25,15 @@ npm run dev      # Vite dev server (http://localhost:5173)
 ## Build
 
 ```bash
-npm run build    # outputs static assets to dist/
+npm run build    # client build + SSR build + prerender into dist/
 npm run preview  # preview the production build
 ```
+
+The build has three steps: the client bundle, an SSR bundle
+(`src/entry-server.jsx` → `dist-server/`), and `scripts/prerender.mjs`, which
+injects the fully rendered page into `dist/index.html` so crawlers and social
+unfurlers see real content. The client re-renders over the static HTML with
+`createRoot` (no hydration contract).
 
 ## Deploy — Cloudflare Pages
 
@@ -39,20 +49,22 @@ npm run preview  # preview the production build
 | `ANTHROPIC_API_KEY` | `functions/api/genius.js` | Server-side key for the Anthropic Messages API |
 | `N8N_BRIEF_WEBHOOK_URL` | `functions/api/genius/brief.js` | n8n webhook that receives the structured brief |
 | `GENIUS_WEBHOOK_SECRET` | `functions/api/genius/brief.js` | Shared secret sent as `X-Genius-Secret` to n8n |
-
-## ⚠️ Before deploying
-
-The Genius system prompt in `src/components/Genius/systemPrompt.js` is a
-**placeholder**. Paste the Genius v2 system prompt into that file before any
-production deploy — without it, the agent has no instructions.
+| `GENIUS_MODEL` *(optional)* | `functions/api/genius.js` | Overrides the default model (`claude-sonnet-4-6`) |
 
 ## Project structure
 
 ```
-index.html                     Vite entry (head preserved from the original site)
-public/og-image.svg            OG image, served at site root
+index.html                     Head: SEO meta, canonical, favicons, JSON-LD
+public/
+  robots.txt  sitemap.xml      Crawler surface
+  _headers                     Security headers + asset caching (Cloudflare Pages)
+  og-image.png                 1200×630 social unfurl image (PNG — SVG og-images don't render)
+  favicon.svg/.ico  icon-*.png apple-touch-icon.png  site.webmanifest
+  privacy.html                 Static privacy page
+  shots/                       Real screenshots for the Proof section
 src/
   main.jsx                     React 18 root mount
+  entry-server.jsx             SSR entry for the build-time prerender
   App.jsx                      Page composition
   styles/                      tokens.css, animations.css, global.css
   components/
@@ -60,10 +72,12 @@ src/
     Logo.jsx                   Gear-brain logo mark
     Watermark.jsx              Faint fixed background logo
     Nav.jsx  Hero.jsx  Footer.jsx
-    Genius/                    systemPrompt.js, useGenius.js, Genius.jsx, Genius.css
-    polish/                    MagneticButton, NumberTicker, MarqueeRow, SpotlightCard, ScrollReveal
-    sections/                  Capabilities, HowItWorks, WhyUs, Contact
-functions/api/
-  genius.js                    Anthropic streaming proxy
-  genius/brief.js              n8n brief forwarder
+    Genius/                    useGenius.js, Genius.jsx, Genius.css
+    polish/                    MagneticButton, NumberTicker (unused), MarqueeRow, SpotlightCard, ScrollReveal
+    sections/                  Proof, HowItWorks, WhyUs, Contact
+functions/
+  _lib/                        geniusPrompt.js (server-side system prompt), http.js (shared guards)
+  api/genius.js                Anthropic streaming proxy (validated, origin-gated, prompt-cached)
+  api/genius/brief.js          n8n brief forwarder (schema-validated)
+scripts/prerender.mjs          Injects rendered HTML into dist/index.html
 ```

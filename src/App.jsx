@@ -28,21 +28,23 @@ export default function App() {
       <Watermark />
       <Nav />
 
-      <Hero>
-        <Genius />
-      </Hero>
+      <main>
+        <Hero>
+          <Genius />
+        </Hero>
 
-      <ScrollReveal><Proof /></ScrollReveal>
+        <ScrollReveal><Proof /></ScrollReveal>
 
-      <ScrollReveal>
-        <section style={{ padding: '3.5rem 0', background: 'var(--obsidian3)' }}>
-          <MarqueeRow industries={INDUSTRIES} />
-        </section>
-      </ScrollReveal>
+        <ScrollReveal>
+          <section style={{ padding: '3.5rem 0', background: 'var(--obsidian3)' }}>
+            <MarqueeRow industries={INDUSTRIES} />
+          </section>
+        </ScrollReveal>
 
-      <ScrollReveal><HowItWorks /></ScrollReveal>
-      <ScrollReveal><WhyUs /></ScrollReveal>
-      <ScrollReveal><Contact /></ScrollReveal>
+        <ScrollReveal><HowItWorks /></ScrollReveal>
+        <ScrollReveal><WhyUs /></ScrollReveal>
+        <ScrollReveal><Contact /></ScrollReveal>
+      </main>
 
       <Footer />
     </>
