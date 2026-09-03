@@ -1,6 +1,14 @@
+import { useEffect, useRef, useState } from 'react';
+import NumberTicker from '../polish/NumberTicker';
+
 /**
- * Proof — replaces the old capability card grid. Genius explains what we'd
- * build; this section's one job is evidence that we actually build it.
+ * Proof — evidence that we actually build what Genius describes.
+ * Two clickable live-demo frames (athletics platform, event studio), plus a row
+ * of in-production builds: the Switchboard live call line and the countertop
+ * quoting platform (client tool, deliberately unlinked).
+ *
+ * Listens for `genius:proof-mention` window events (dispatched by the Genius
+ * chat when a reply surfaces one of these) and briefly glows the matching card.
  */
 const PROOF_POINTS = [
   {
@@ -17,8 +25,15 @@ const PROOF_POINTS = [
   },
 ];
 
+const STATS = [
+  { value: 7, label: 'systems live in production' },
+  { value: 5, label: 'industries served' },
+  { value: '1–2wk', label: 'discovery to first ship' },
+];
+
 const DEMOS = [
   {
+    key: 'athletics',
     url: 'https://demo.simplegenius.io',
     urlLabel: 'demo.simplegenius.io',
     kicker: 'Athletics platform — CRM, AI outreach, ticketing',
@@ -29,6 +44,7 @@ const DEMOS = [
     shotAlt: 'Screenshot of the live athletics platform demo',
   },
   {
+    key: 'nsa',
     url: 'https://nsaballoonco.com',
     urlLabel: 'nsaballoonco.com',
     kicker: 'Event studio — AI intake agent, live client site',
@@ -40,7 +56,31 @@ const DEMOS = [
   },
 ];
 
+const CALL_ROWS = [
+  { marker: 'answers', text: 'the calls your front desk can’t get to' },
+  { marker: 'quotes', text: 'services and books the appointment on the spot' },
+  { marker: 'logs', text: 'every call, and emails you when one needs a human' },
+];
+
 export default function Proof() {
+  const [pinged, setPinged] = useState(null);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    const onMention = (e) => {
+      setPinged(e.detail);
+      clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => setPinged(null), 4500);
+    };
+    window.addEventListener('genius:proof-mention', onMention);
+    return () => {
+      window.removeEventListener('genius:proof-mention', onMention);
+      clearTimeout(timerRef.current);
+    };
+  }, []);
+
+  const pingClass = (key) => (pinged === key ? ' proof-frame--pinged' : '');
+
   return (
     <section id="proof" style={{ padding: '5.5rem 1.5rem', background: 'var(--obsidian)' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3.5rem', alignItems: 'center' }}>
@@ -57,6 +97,16 @@ export default function Proof() {
               </li>
             ))}
           </ul>
+          <div className="stats-row">
+            {STATS.map((s, i) => (
+              <div key={s.label} className="stat-item">
+                <span className="stat-num grad-gold font-display">
+                  <NumberTicker value={s.value} />
+                </span>
+                <span className="stat-label">{s.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="proof-frames">
@@ -66,7 +116,7 @@ export default function Proof() {
               href={d.url}
               target="_blank"
               rel="noreferrer"
-              className={`proof-frame${d.accent ? ` proof-frame--${d.accent}` : ''}`}
+              className={`proof-frame${d.accent ? ` proof-frame--${d.accent}` : ''}${pingClass(d.key)}`}
               aria-label={d.ariaLabel}
             >
               <div className="proof-frame-bar">
@@ -89,6 +139,56 @@ export default function Proof() {
               </div>
             </a>
           ))}
+        </div>
+      </div>
+
+      <div className="proof-more">
+        <a
+          href="tel:+14697540536"
+          className={`proof-frame proof-frame--call${pingClass('switchboard')}`}
+          aria-label="Call the live Switchboard AI receptionist demo line"
+        >
+          <div className="proof-frame-bar">
+            <span className="proof-frame-dot"></span>
+            <span className="proof-frame-dot"></span>
+            <span className="proof-frame-dot"></span>
+            <span className="proof-frame-url">+1 (469) 754-0536</span>
+            <span className="proof-live" aria-hidden="true"><span className="proof-live-dot"></span>live</span>
+          </div>
+          <div className="proof-frame-body">
+            <div className="proof-call">
+              <span className="proof-call-number font-display grad-gold">(469) 754-0536</span>
+              {CALL_ROWS.map((r) => (
+                <div key={r.marker} className="proof-call-row">
+                  <span className="proof-call-marker">{r.marker}</span>
+                  <span className="proof-call-text">{r.text}</span>
+                </div>
+              ))}
+            </div>
+            <span className="proof-frame-kicker">Switchboard — AI phone receptionist for service businesses</span>
+            <span className="proof-frame-cta">Call the live demo line ↗</span>
+          </div>
+        </a>
+
+        <div className="proof-frame proof-frame--static">
+          <div className="proof-frame-bar">
+            <span className="proof-frame-dot"></span>
+            <span className="proof-frame-dot"></span>
+            <span className="proof-frame-dot"></span>
+            <span className="proof-frame-url">client production · private</span>
+          </div>
+          <div className="proof-frame-body">
+            <img
+              className="proof-shot"
+              src="/shots/platinum-quote.jpg"
+              alt="Screenshot of a countertop quote with measured slab layouts"
+              width="1280"
+              height="800"
+              loading="lazy"
+            />
+            <span className="proof-frame-kicker">Quoting platform — slab layouts, one-tap customer approval</span>
+            <span className="proof-frame-cta proof-frame-cta--muted">In production for a DFW countertop fabricator</span>
+          </div>
         </div>
       </div>
     </section>

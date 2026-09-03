@@ -40,6 +40,30 @@
   text-align: center;
   color: #b7bdc9;
 }
+.genius-presence {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+.genius-presence-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--lime-bright);
+  box-shadow: 0 0 8px rgba(114, 212, 62, 0.8);
+  animation: geniusPresencePulse 2.2s ease-in-out infinite;
+}
+@keyframes geniusPresencePulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* Links Genius hands out in conversation */
+.genius-link { color: var(--gold-light); text-decoration: underline; text-underline-offset: 3px; }
+.genius-link:hover { color: var(--gold); }
 /* --- Conversation thread (active) ----------------------------------------- */
 .genius-thread {
   width: 100%;
@@ -247,7 +271,7 @@
 .genius--closing { width: 100%; }
 .genius-confirm-card {
   width: 100%;
-  max-width: 560px;
+  max-width: 680px;
   margin: 0 auto;
   text-align: center;
   padding: 3rem 2rem;
@@ -269,22 +293,31 @@
   margin-bottom: 0.75rem;
 }
 .genius-confirm-body { font-size: 0.95rem; color: #9ca3af; line-height: 1.75; font-weight: 300; }
-.genius-confirm-cta {
-  display: inline-block;
-  margin-top: 1.75rem;
-  padding: 0.9rem 2.2rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
-  color: #000;
-  font-family: var(--font-display);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
+.genius-cal-embed {
+  margin-top: 1.5rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.35);
 }
-.genius-confirm-cta:hover { transform: scale(1.04); box-shadow: 0 0 28px rgba(212, 175, 55, 0.35); }
+.genius-cal-embed iframe {
+  display: block;
+  width: 100%;
+  height: 560px;
+  border: 0;
+}
+.genius-confirm-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+}
+.genius-confirm-link:hover { color: var(--gold-light); }
 .genius-restart {
   display: block;
   margin: 1.4rem auto 0;

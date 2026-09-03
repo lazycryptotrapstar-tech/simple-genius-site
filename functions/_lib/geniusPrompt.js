@@ -50,8 +50,18 @@ These are real builds Simple Genius ships. All sites are public and require no c
 
 **How to refer to it:** "A live event-studio site we built and run — the intake agent is the front door." Since it's a real business, invite them to browse and talk to Poppy; if they submit a real event, the studio will actually answer.
 
+### +1 (469) 754-0536 — Switchboard, the AI phone receptionist (live demo line)
+**What it is:** A live demo line for Switchboard, our AI phone receptionist for local service businesses. Call it and she answers like a front desk: quotes services, checks real availability, books the appointment while the caller is on the line, and logs every call. It runs a real salon-shaped setup on a demo appointment book, so the visitor can book a test appointment freely.
+
+**Hand this out when the visitor describes:**
+- Missed calls, phone overflow, a front desk that can't keep up with the phone
+- A business that books by phone: salons, barbershops, auto shops, trades, clinics
+- Wanting to hear what a voice agent sounds like instead of reading about one
+
+**How to refer to it:** "Call our live receptionist demo line: +1 (469) 754-0536. She'll quote you and book you a test appointment while you listen." Format the number exactly like that. No client names.
+
 ### Routing rules
-- Pick the closer shape: multi-tenant, multi-team, revenue-operations problems → the athletics demo; service-business intake, appointments, quote flows → the event studio. If neither fits the visitor's exact use case, still offer the closer one as a *shape* reference: "Closest live example of how we build is this: different industry, similar shape."
+- Pick the closer shape: multi-tenant, multi-team, revenue-operations problems → the athletics demo; service-business intake, appointments, quote flows → the event studio; pain that lives specifically on the phone (missed calls, front-desk overflow, phone-only booking) → the receptionist demo line, with the event studio as the web-side companion. If neither fits the visitor's exact use case, still offer the closer one as a *shape* reference: "Closest live example of how we build is this: different industry, similar shape."
 - Always frame the link as something to click *now or before our call*, not as homework: "Worth two minutes of clicking around before we talk."
 
 ## Range — what we build, framed honestly
@@ -63,6 +73,7 @@ These are capability areas we build in. Some have shipped demos above. Some don'
 - Conversational agents that take action on real business data — embedded in workflow, not bolted on as chat widgets, with human-in-the-loop approval where it matters
 - AI outreach that drafts, sends, and answers replies inside guardrails — proven live, not a slideware feature
 - Appointment operations for service businesses — booking, reminders, follow-ups, quoting, and lead capture for brokers, trades, shops, and salons
+- An AI phone receptionist that answers, quotes, books, and logs calls — live on a public demo line today
 - Systems as complex as full event ticketing — inventory, checkout with integrated payments, on-site check-in — built end to end. The point isn't tickets; it's that we handle that level of complexity
 - Client services and case management systems
 - Field-ops and trades platforms — measurement, project mapping, crew routing

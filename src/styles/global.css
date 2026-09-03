@@ -195,6 +195,57 @@ nav { position: fixed; top: 0; width: 100%; z-index: 50; }
   text-transform: uppercase; color: var(--gold);
 }
 
+/* Second proof row — the call line + private client build */
+.proof-more {
+  max-width: 1100px;
+  margin: 1.6rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.6rem;
+}
+.proof-frame--static { cursor: default; }
+.proof-frame--call { display: flex; flex-direction: column; }
+.proof-frame--call .proof-frame-body { display: flex; flex-direction: column; flex: 1; }
+.proof-call { display: flex; flex-direction: column; justify-content: center; gap: 1rem; padding: 0.6rem 0 1rem; flex: 1; }
+.proof-call-number {
+  font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 700; letter-spacing: -0.02em;
+  line-height: 1; margin-bottom: 0.6rem;
+}
+.proof-call-row { display: flex; gap: 0.9rem; align-items: baseline; }
+.proof-call-marker {
+  font-family: var(--font-mono); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold); white-space: nowrap; flex-shrink: 0; min-width: 64px;
+}
+.proof-call-text { font-size: 0.9rem; color: #c8cdd6; line-height: 1.6; font-weight: 300; }
+.proof-live {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--lime-bright);
+}
+.proof-live-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--lime-bright);
+  box-shadow: 0 0 8px rgba(114,212,62,0.8); animation: proofLivePulse 2s ease-in-out infinite;
+}
+@keyframes proofLivePulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.proof-frame-cta--muted { color: #9ca3af; }
+
+/* Glow when Genius mentions a build in conversation */
+.proof-frame--pinged {
+  border-color: rgba(212,175,55,0.65);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 60px rgba(212,175,55,0.22);
+  animation: proofPing 4.5s ease-out forwards;
+}
+@keyframes proofPing {
+  0% { border-color: rgba(212,175,55,0.85); }
+  100% { border-color: rgba(255,255,255,0.1); box-shadow: 0 24px 70px rgba(0,0,0,0.5); }
+}
+
+/* Stats row (Proof section) */
+.stats-row { display: flex; align-items: stretch; flex-wrap: wrap; gap: 1.5rem 2.5rem; margin-top: 2.4rem; }
+.stat-item { display: flex; flex-direction: column; gap: 0.35rem; }
+.stat-num { font-size: 2.2rem; font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+.stat-label { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: #9ca3af; font-family: var(--font-mono); font-weight: 500; white-space: nowrap; }
+
 /* Rose accent variant (NSA) */
 .proof-frame--rose .proof-frame-body::before {
   background: radial-gradient(ellipse at 80% 0%, rgba(214,116,140,0.09) 0%, transparent 55%);

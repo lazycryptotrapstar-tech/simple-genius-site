@@ -51,14 +51,17 @@ export default function NumberTicker({ value, duration = 1.5, className = '' }) 
     return () => cancelAnimationFrame(raf);
   }, [inView, isNumeric, target, duration, value]);
 
-  const content = isNumeric ? (display ?? '0') : value;
+  // During build-time prerendering, render the final value fully visible so
+  // crawlers (and no-JS visitors) see real numbers, not opacity-0 zeros.
+  const isServer = typeof window === 'undefined';
+  const content = isServer ? value : isNumeric ? (display ?? '0') : value;
 
   return (
     <span
       ref={ref}
       className={className}
       style={{
-        opacity: inView ? 1 : 0,
+        opacity: isServer || inView ? 1 : 0,
         transition: `opacity ${duration}s cubic-bezier(0.16,1,0.3,1)`,
       }}
     >

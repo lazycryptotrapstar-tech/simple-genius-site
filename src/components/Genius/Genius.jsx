@@ -27,6 +27,37 @@ const displayText = (t) =>
     .replace(/\s+—\s+/g, ', ')
     .trimEnd();
 
+/**
+ * Linkify the things Genius actually hands out: full URLs, our known bare
+ * domains, and the Switchboard demo phone number. Whitelist-based on purpose —
+ * generic linkification would false-positive on emails and stray dots.
+ */
+const LINK_RE = /(https?:\/\/[^\s]+|(?:demo\.simplegenius\.io|nsaballoonco\.com|cal\.com\/)[^\s]*|\+?1?\s?\(469\)\s?754-0536)/g;
+const PHONE_RE = /\(469\)\s?754-0536/;
+
+const renderRich = (text) =>
+  text.split(LINK_RE).map((part, i) => {
+    if (i % 2 === 0) return part;
+    const url = part.replace(/[.,;:!?)]+$/, '');
+    const trailing = part.slice(url.length);
+    const href = PHONE_RE.test(url)
+      ? 'tel:+14697540536'
+      : url.startsWith('http') ? url : `https://${url}`;
+    return (
+      <span key={i}>
+        <a className="genius-link" href={href} target={href.startsWith('tel:') ? undefined : '_blank'} rel="noreferrer">{url}</a>
+        {trailing}
+      </span>
+    );
+  });
+
+/** Map a completed reply to the proof card it surfaced, if any. */
+const proofMentionKey = (t) =>
+  t.includes('demo.simplegenius.io') ? 'athletics'
+  : t.includes('nsaballoonco.com') ? 'nsa'
+  : PHONE_RE.test(t) ? 'switchboard'
+  : null;
+
 const SendIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
@@ -60,6 +91,14 @@ export default function Genius() {
   const lastAssistant = [...messages].reverse().find((m) => m.role === 'assistant' && m.content);
   const announcement = !isStreaming && lastAssistant ? displayText(lastAssistant.content) : '';
 
+  // When a completed reply surfaces one of our live builds, let the Proof
+  // section know so the matching card glows.
+  useEffect(() => {
+    if (isStreaming || !lastAssistant) return;
+    const key = proofMentionKey(lastAssistant.content);
+    if (key) window.dispatchEvent(new CustomEvent('genius:proof-mention', { detail: key }));
+  }, [isStreaming]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const text = draft;
@@ -88,11 +127,21 @@ export default function Genius() {
           <h2 className="genius-confirm-title">We've got your details.</h2>
           <p className="genius-confirm-body">
             The Simple Genius team will be in touch within one business day.
+            Want to skip the wait? Grab a time right here:
           </p>
           {CALENDAR_URL && (
-            <a className="genius-confirm-cta" href={CALENDAR_URL} target="_blank" rel="noreferrer">
-              Grab a time now →
-            </a>
+            <>
+              <div className="genius-cal-embed">
+                <iframe
+                  src={`${CALENDAR_URL}?theme=dark`}
+                  title="Book a discovery call"
+                  loading="lazy"
+                />
+              </div>
+              <a className="genius-confirm-link" href={CALENDAR_URL} target="_blank" rel="noreferrer">
+                Or open the calendar in a new tab →
+              </a>
+            </>
           )}
           <button type="button" className="genius-restart" onClick={handleReset}>
             Start a new conversation
@@ -111,6 +160,10 @@ export default function Genius() {
           <p className="genius-subline">
             Simple Genius builds AI-powered operational platforms: custom CRMs, intake
             agents, and workflow systems that run your day-to-day — and that you own.
+          </p>
+          <p className="genius-presence">
+            <span className="genius-presence-dot" aria-hidden="true"></span>
+            Genius is online
           </p>
         </div>
       ) : (
@@ -134,7 +187,7 @@ export default function Genius() {
               <div key={i} className="genius-msg genius-msg--assistant">
                 <span className="genius-avatar" aria-hidden="true">✦</span>
                 <div className="genius-answer">
-                  {displayText(m.content)}
+                  {renderRich(displayText(m.content))}
                   {isStreaming && i === messages.length - 1 && (
                     <span className="genius-caret" aria-hidden="true" />
                   )}
