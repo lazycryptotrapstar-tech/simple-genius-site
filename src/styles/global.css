@@ -11,6 +11,9 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+/* During a chat, browser keyboard/focus pans should be instant — smooth
+   scrolling turns every iOS keyboard adjustment into a visible glide. */
+html:has(body.genius-active) { scroll-behavior: auto; }
 body {
   font-family: var(--font-body);
   background-color: var(--obsidian);
@@ -254,6 +257,9 @@ nav { position: fixed; top: 0; width: 100%; z-index: 50; }
   border-color: rgba(214,116,140,0.45);
   box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 46px rgba(214,116,140,0.1);
 }
+
+/* Hero height: svh keeps it stable while mobile browser chrome shows/hides */
+#top { min-height: 100vh; min-height: 100svh; }
 
 /* Hero glows + aura (entrance handled by animations.css keyframes) */
 .hero-aura { position: absolute; inset: 0; pointer-events: none; }

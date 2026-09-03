@@ -68,7 +68,10 @@
 .genius-thread {
   width: 100%;
   text-align: left; /* the hero centers everything — conversation text must not inherit that */
-  max-height: 52vh;
+  /* Fixed height, not max-height: a growing box re-centers the whole hero on
+     every streamed token, which reads as screen-jumping on mobile. */
+  height: 52vh;
+  height: 52svh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -79,6 +82,8 @@
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 1.25rem);
   mask-image: linear-gradient(to bottom, transparent 0, #000 1.25rem);
 }
+/* Anchor short conversations to the bottom of the box, chat-app style. */
+.genius-thread > .genius-msg:first-child { margin-top: auto; }
 .genius-thread::-webkit-scrollbar { width: 6px; }
 .genius-thread::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.25); border-radius: 999px; }
 
@@ -341,7 +346,7 @@
 
 /* Mobile */
 @media (max-width: 480px) {
-  .genius-thread { max-height: 48vh; }
+  .genius-thread { height: 48vh; height: 48svh; }
   .genius-chips { gap: 0.45rem; }
   .genius-chip { font-size: 0.76rem; padding: 0.42rem 0.85rem; }
 }

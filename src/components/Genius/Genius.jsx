@@ -107,6 +107,12 @@ export default function Genius() {
     return () => document.body.classList.remove('genius-active');
   }, [hasConversation, briefEmitted]);
 
+  // The moment a conversation starts, snap the page to the top so the chat
+  // owns the screen from a stable position (instant — no smooth-scroll drift).
+  useEffect(() => {
+    if (hasConversation) window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [hasConversation]);
+
   // Auto-grow the composer with the draft, capped so it never eats the thread.
   const autoGrow = (el) => {
     el.style.height = 'auto';
@@ -118,7 +124,12 @@ export default function Genius() {
     const text = draft;
     if (!text.trim() || isStreaming) return;
     setDraft('');
-    if (inputRef.current) inputRef.current.style.height = 'auto';
+    if (inputRef.current) {
+      inputRef.current.style.height = 'auto';
+      // Keep focus in the composer so the mobile keyboard never dismisses —
+      // the open/close cycle is what makes the page jump on iOS.
+      inputRef.current.focus();
+    }
     sendMessage(text);
   };
 
@@ -246,6 +257,8 @@ export default function Genius() {
             className="genius-send"
             aria-label="Send"
             disabled={isStreaming || !draft.trim()}
+            onPointerDown={(e) => e.preventDefault()} /* don't steal focus from the composer */
+            onMouseDown={(e) => e.preventDefault()}
           >
             <SendIcon />
           </MagneticButton>

@@ -12,7 +12,8 @@ export default function Hero({ children }) {
       id="top"
       style={{
         position: 'relative',
-        minHeight: '100vh',
+        /* min-height lives in global.css (#top) — 100vh with a 100svh override
+           so mobile browser chrome showing/hiding doesn't resize the hero. */
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
