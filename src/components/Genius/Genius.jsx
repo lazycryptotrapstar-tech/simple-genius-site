@@ -191,7 +191,7 @@ export default function Genius() {
           </ul>
           <p className="genius-notice">
             Genius is an AI agent. Conversations go to the Simple Genius team.{' '}
-            <a href="/privacy.html">Privacy</a>
+            <a href="/privacy">Privacy</a>
           </p>
         </>
       )}

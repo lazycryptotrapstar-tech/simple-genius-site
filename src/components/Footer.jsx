@@ -19,7 +19,7 @@ export default function Footer() {
         <div className="footer-links">
           <a href="#top" className="footer-link footer-link--gold">Talk to Genius ↑</a>
           <a href="mailto:hello@simplegenius.io" className="footer-link">Email</a>
-          <a href="/privacy.html" className="footer-link">Privacy</a>
+          <a href="/privacy" className="footer-link">Privacy</a>
         </div>
 
         <p className="footer-copy">© {new Date().getFullYear()} Simple Genius Consulting</p>
