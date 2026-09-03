@@ -267,6 +267,14 @@ nav { position: fixed; top: 0; width: 100%; z-index: 50; }
   animation: heroLogoIn 1s cubic-bezier(0.16,1,0.3,1) 0.2s forwards;
   filter: drop-shadow(0 0 50px rgba(168,85,247,0.22));
 }
+/* Active chat: shrink the mark so it stays on screen for the whole conversation
+   (the thread scrolls beneath it). Snap, no transition — animating this SVG's
+   box is a known Chrome compositor risk. */
+body.genius-active .hero-logo-mark {
+  width: 88px !important;
+  height: 88px !important;
+  margin-bottom: 1rem !important;
+}
 
 /* Responsive */
 @media (max-width: 767px) {

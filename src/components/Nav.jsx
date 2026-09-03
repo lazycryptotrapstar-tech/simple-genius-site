@@ -27,7 +27,7 @@ export default function Nav() {
           </a>
 
           <a href={CALENDAR_URL} target="_blank" rel="noreferrer" className="nav-book-link">
-            Book a call ↗
+            Book a call {'↗︎'}
           </a>
         </div>
       </div>

@@ -37,7 +37,7 @@ const DEMOS = [
     url: 'https://demo.simplegenius.io',
     urlLabel: 'demo.simplegenius.io',
     kicker: 'Athletics platform — CRM, AI outreach, ticketing',
-    cta: 'Click around the live demo ↗',
+    cta: 'Click around the live demo ↗︎',
     ariaLabel: 'Open the live athletics platform demo',
     accent: null,
     shot: '/shots/athletics-demo.jpg',
@@ -48,7 +48,7 @@ const DEMOS = [
     url: 'https://nsaballoonco.com',
     urlLabel: 'nsaballoonco.com',
     kicker: 'Event studio — AI intake agent, live client site',
-    cta: 'Meet Poppy on the live site ↗',
+    cta: 'Meet Poppy on the live site ↗︎',
     ariaLabel: 'Open the live NSA Balloon Co site',
     accent: 'rose',
     shot: '/shots/nsa-balloon.jpg',
@@ -166,16 +166,22 @@ export default function Proof() {
               ))}
             </div>
             <span className="proof-frame-kicker">Switchboard — AI phone receptionist for service businesses</span>
-            <span className="proof-frame-cta">Call the live demo line ↗</span>
+            <span className="proof-frame-cta">Call the live demo line {'↗︎'}</span>
           </div>
         </a>
 
-        <div className="proof-frame proof-frame--static">
+        <a
+          href="https://platinum.simplegenius.io/demo"
+          target="_blank"
+          rel="noreferrer"
+          className="proof-frame"
+          aria-label="Try the countertop quoting platform demo"
+        >
           <div className="proof-frame-bar">
             <span className="proof-frame-dot"></span>
             <span className="proof-frame-dot"></span>
             <span className="proof-frame-dot"></span>
-            <span className="proof-frame-url">client production · private</span>
+            <span className="proof-frame-url">platinum.simplegenius.io/demo</span>
           </div>
           <div className="proof-frame-body">
             <img
@@ -186,10 +192,10 @@ export default function Proof() {
               height="800"
               loading="lazy"
             />
-            <span className="proof-frame-kicker">Quoting platform — slab layouts, one-tap customer approval</span>
-            <span className="proof-frame-cta proof-frame-cta--muted">In production for a DFW countertop fabricator</span>
+            <span className="proof-frame-kicker">Quoting platform — in production for a DFW countertop fabricator</span>
+            <span className="proof-frame-cta">Try the demo quote builder {'↗︎'}</span>
           </div>
-        </div>
+        </a>
       </div>
     </section>
   );

@@ -99,11 +99,26 @@ export default function Genius() {
     if (key) window.dispatchEvent(new CustomEvent('genius:proof-mention', { detail: key }));
   }, [isStreaming]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // While a conversation (or the closing card) is up, shrink the hero logo so
+  // it stays visible the whole chat — the thread scrolls under it.
+  useEffect(() => {
+    const active = hasConversation || briefEmitted;
+    document.body.classList.toggle('genius-active', active);
+    return () => document.body.classList.remove('genius-active');
+  }, [hasConversation, briefEmitted]);
+
+  // Auto-grow the composer with the draft, capped so it never eats the thread.
+  const autoGrow = (el) => {
+    el.style.height = 'auto';
+    el.style.height = `${Math.min(el.scrollHeight, 128)}px`;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const text = draft;
     if (!text.trim() || isStreaming) return;
     setDraft('');
+    if (inputRef.current) inputRef.current.style.height = 'auto';
     sendMessage(text);
   };
 
@@ -210,12 +225,18 @@ export default function Genius() {
 
       <form className="genius-input-row" onSubmit={handleSubmit}>
         <SpotlightCard className="genius-input-shell">
-          <input
+          <textarea
             ref={inputRef}
             className="genius-input"
-            type="text"
+            rows={1}
             value={draft}
-            onChange={(e) => setDraft(e.target.value)}
+            onChange={(e) => {
+              setDraft(e.target.value);
+              autoGrow(e.target);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) handleSubmit(e);
+            }}
             placeholder={PLACEHOLDER_TEXT}
             aria-label="Message Genius"
             autoComplete="off"

@@ -171,7 +171,7 @@
 .genius-input-row { width: 100%; }
 .genius-input-shell {
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* keep the send button anchored as the textarea grows */
   gap: 0.6rem;
   width: 100%;
   padding: 0.55rem 0.55rem 0.55rem 1.3rem;
@@ -196,7 +196,12 @@
   font-family: var(--font-body);
   font-size: 1rem; /* 16px — prevents iOS zoom-on-focus */
   font-weight: 400;
-  padding: 0.6rem 0;
+  line-height: 1.5;
+  padding: 0.55rem 0;
+  resize: none; /* textarea: grows via JS, wraps instead of scrolling sideways */
+  max-height: 128px;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 .genius-input::placeholder { color: #9ca3af; }
 

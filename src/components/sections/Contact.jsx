@@ -20,7 +20,7 @@ export default function Contact() {
           rel="noreferrer"
           className="cta-pill"
         >
-          Book a call ↗
+          Book a call {'↗︎'}
         </a>
       </div>
     </section>
