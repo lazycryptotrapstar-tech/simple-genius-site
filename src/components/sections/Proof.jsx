@@ -212,13 +212,13 @@ export default function Proof() {
           <div className="proof-frame-body">
             <img
               className="proof-shot"
-              src="/shots/quote-builder.jpg"
-              alt="Screenshot of a countertop quote with pieces laid out on a stone slab"
+              src="/shots/quote-builder-v2.jpg"
+              alt="Screenshot of a 3D kitchen wall view with the selected cabinet's measurements below"
               width="1280"
               height="800"
               loading="lazy"
             />
-            <span className="proof-frame-kicker">Quoting platform — built for a fabricator, shown as a sample business</span>
+            <span className="proof-frame-kicker">Stone quoting — 3D room plans, any job, sample business</span>
             <span className="proof-frame-cta">Try the demo quote builder {'↗︎'}</span>
           </div>
         </a>

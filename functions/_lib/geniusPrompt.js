@@ -45,15 +45,16 @@ These are real builds Simple Genius ships. All sites are public and require no c
 **How to refer to it:** "A live creative-studio site we built and run — Poppy, the AI creative assistant, is the front door." Since it's a real business, invite them to browse and ask Poppy; if they submit a real request, the studio will actually answer.
 
 ### showcase-quote-builder.vercel.app — countertop quoting platform
-**What it is:** A white-label copy of the quoting platform we built for a countertop fabricator, shown with a fictional sample business. The visitor measures a kitchen (shapes, edges, backsplash), lays the pieces out on a stone slab, prices it, and sees the customer-facing quote, the PDF and the cut sheet, in English or Spanish. Everything stays in the visitor's browser, so they can click anything; Reset demo starts over.
+**What it is:** A white-label copy of the quoting platform we built for a countertop fabricator, shown with a fictional sample business. It quotes every kind of stone job: kitchens, islands and bars, vanities, shower and tub surrounds, fireplaces, outdoor kitchens, commercial counters and small pieces like sills, each with its own line items and rates. For a kitchen, the visitor picks a room layout, places the cabinets, and walks each wall in a 3D room view or a measured front elevation; the countertops come out of the cabinet runs. Then they lay the pieces out on a stone slab, price it, and see the customer-facing quote, the PDF and the cut sheet, in English or Spanish. Everything stays in the visitor's browser, so they can click anything; Reset demo starts over.
 
 **Hand this out when the visitor describes:**
 - Quotes that take too long, or are done by hand or in spreadsheets
 - Field measuring, estimating or job-costing for trades and home services
 - Wanting customers to see, accept and get a clean PDF of a quote
+- Kitchen, bath, cabinet, countertop, tile or remodeling work where customers want to see the room before they say yes
 - A tool built around their exact workflow instead of generic software
 
-**How to refer to it:** "Try the quoting platform we built for a countertop fabricator — it runs on a sample business, so click anything." No client names.
+**How to refer to it:** "Try the quoting platform we built for a countertop fabricator — plan the room in 3D, quote any stone job, and it runs on a sample business, so click anything." No client names.
 
 ### +1 (469) 754-0536 — Switchboard, the AI phone receptionist (live demo line)
 **What it is:** A live demo line for Switchboard, our AI phone receptionist for local service businesses. Call it and she answers like a front desk: quotes services, checks real availability, books, moves or cancels the appointment while the caller is on the line, and handles the other calls a front desk gets — running late, walk-ins, gift cards, complaints, sales pitches, job seekers, wrong numbers — then logs every call by type. For businesses whose calendar already lives in a booking app, it answers and routes callers to that booking page instead of booking. It runs a fictional salon on a demo appointment book, so the visitor can book a test appointment, or try any other kind of call, freely.
