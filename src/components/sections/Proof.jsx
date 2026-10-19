@@ -212,7 +212,7 @@ export default function Proof() {
           <div className="proof-frame-body">
             <img
               className="proof-shot"
-              src="/shots/quote-builder-v3.jpg"
+              src="/shots/quote-builder-3d.jpg"
               alt="Screenshot of a 3D kitchen with sage cabinets and stone countertops cut from the laid-out slabs"
               width="1280"
               height="800"
