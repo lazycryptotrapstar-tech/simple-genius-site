@@ -3,7 +3,7 @@ import NumberTicker from '../polish/NumberTicker';
 
 /**
  * Proof — evidence that we actually build what Genius describes.
- * A clickable live-demo frame (event studio) over an anonymous case-study card
+ * A clickable live-demo frame (NSA's creative design studio) over an anonymous case-study card
  * for a private client platform, plus a row with the Switchboard live call line
  * and the white-label countertop quoting demo.
  *
@@ -51,12 +51,12 @@ const DEMOS = [
     key: 'nsa',
     url: 'https://nsaballoonco.com',
     urlLabel: 'nsaballoonco.com',
-    kicker: 'Event studio — AI intake agent, live client site',
-    cta: 'Meet Poppy on the live site ↗︎',
-    ariaLabel: 'Open the live NSA Balloon Co site',
+    kicker: 'Creative design studio — AI creative assistant, live client site',
+    cta: 'Ask Poppy on the live site ↗︎',
+    ariaLabel: 'Open the live NSA Creative Design Studio site',
     accent: 'rose',
-    shot: '/shots/nsa-balloon.jpg',
-    shotAlt: 'Screenshot of the live NSA Balloon Co event studio site',
+    shot: '/shots/nsa-studio.jpg',
+    shotAlt: 'Screenshot of the live NSA Creative Design Studio site, with Poppy the creative assistant',
   },
 ];
 
