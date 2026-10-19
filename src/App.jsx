@@ -12,9 +12,10 @@ import MarqueeRow from './components/polish/MarqueeRow';
 import ScrollReveal from './components/polish/ScrollReveal';
 
 // 5 representative industries (condensed from the original 12-pill list) + tail.
+// No sports or athletics: the client non-compete covers sports technology.
 const INDUSTRIES = [
-  'College Athletics',
-  'Sports Management',
+  'Salons & Beauty',
+  'Home Services',
   'Event & Ticketing',
   'Real Estate',
   'Revenue Operations',

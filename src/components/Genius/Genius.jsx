@@ -32,7 +32,7 @@ const displayText = (t) =>
  * domains, and the Switchboard demo phone number. Whitelist-based on purpose —
  * generic linkification would false-positive on emails and stray dots.
  */
-const LINK_RE = /(https?:\/\/[^\s]+|(?:demo\.simplegenius\.io|nsaballoonco\.com|cal\.com\/)[^\s]*|\+?1?\s?\(469\)\s?754-0536)/g;
+const LINK_RE = /(https?:\/\/[^\s]+|(?:nsaballoonco\.com|showcase-quote-builder\.vercel\.app|cal\.com\/)[^\s]*|\+?1?\s?\(469\)\s?754-0536)/g;
 const PHONE_RE = /\(469\)\s?754-0536/;
 
 const renderRich = (text) =>
@@ -53,8 +53,8 @@ const renderRich = (text) =>
 
 /** Map a completed reply to the proof card it surfaced, if any. */
 const proofMentionKey = (t) =>
-  t.includes('demo.simplegenius.io') ? 'athletics'
-  : t.includes('nsaballoonco.com') ? 'nsa'
+  t.includes('nsaballoonco.com') ? 'nsa'
+  : t.includes('showcase-quote-builder.vercel.app') ? 'quote'
   : PHONE_RE.test(t) ? 'switchboard'
   : null;
 

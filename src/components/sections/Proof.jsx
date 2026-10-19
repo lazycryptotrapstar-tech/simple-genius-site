@@ -3,9 +3,14 @@ import NumberTicker from '../polish/NumberTicker';
 
 /**
  * Proof — evidence that we actually build what Genius describes.
- * Two clickable live-demo frames (athletics platform, event studio), plus a row
- * of in-production builds: the Switchboard live call line and the countertop
- * quoting platform (client tool, deliberately unlinked).
+ * A clickable live-demo frame (event studio) over an anonymous case-study card
+ * for a private client platform, plus a row with the Switchboard live call line
+ * and the white-label countertop quoting demo.
+ *
+ * The case-study card stays text-only and industry-free on purpose: the client
+ * agreement (§20.9) allows a general, anonymous description and no screenshots,
+ * links, platform materials or architecture details, and the site carries no
+ * sports or athletics mentions (non-compete). Do not add any.
  *
  * Listens for `genius:proof-mention` window events (dispatched by the Genius
  * chat when a reply surfaces one of these) and briefly glows the matching card.
@@ -31,18 +36,17 @@ const STATS = [
   { value: '1–2wk', label: 'discovery to first ship' },
 ];
 
+// White-label copy of the client's quoting tool (fictional fabricator, data in
+// the visitor's browser). Repo: lazycryptotrapstar-tech/showcase-quote-builder.
+const QUOTE_DEMO_URL = 'https://showcase-quote-builder.vercel.app';
+
+const CASE_ROWS = [
+  { marker: 'crm', text: 'one place for contacts, pipeline and follow-up' },
+  { marker: 'ticketing', text: 'sales, checkout and check-in, built end to end' },
+  { marker: 'in use', text: 'running for the client’s team every day' },
+];
+
 const DEMOS = [
-  {
-    key: 'athletics',
-    url: 'https://demo.simplegenius.io',
-    urlLabel: 'demo.simplegenius.io',
-    kicker: 'Athletics platform — CRM, AI outreach, ticketing',
-    cta: 'Click around the live demo ↗︎',
-    ariaLabel: 'Open the live athletics platform demo',
-    accent: null,
-    shot: '/shots/athletics-demo.jpg',
-    shotAlt: 'Screenshot of the live athletics platform demo',
-  },
   {
     key: 'nsa',
     url: 'https://nsaballoonco.com',
@@ -139,6 +143,28 @@ export default function Proof() {
               </div>
             </a>
           ))}
+
+          <div className="proof-frame proof-frame--static">
+            <div className="proof-frame-bar">
+              <span className="proof-frame-dot"></span>
+              <span className="proof-frame-dot"></span>
+              <span className="proof-frame-dot"></span>
+              <span className="proof-frame-url">case study · private client build</span>
+            </div>
+            <div className="proof-frame-body">
+              <div className="proof-call">
+                <span className="proof-case-title font-display">A CRM and ticketing platform for a private client</span>
+                {CASE_ROWS.map((r) => (
+                  <div key={r.marker} className="proof-call-row">
+                    <span className="proof-call-marker">{r.marker}</span>
+                    <span className="proof-call-text">{r.text}</span>
+                  </div>
+                ))}
+              </div>
+              <span className="proof-frame-kicker">Private build — shown by description only</span>
+              <span className="proof-frame-cta proof-frame-cta--muted">Ask about it on a call</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -171,28 +197,28 @@ export default function Proof() {
         </a>
 
         <a
-          href="https://platinum.simplegenius.io/demo"
+          href={QUOTE_DEMO_URL}
           target="_blank"
           rel="noreferrer"
-          className="proof-frame"
+          className={`proof-frame${pingClass('quote')}`}
           aria-label="Try the countertop quoting platform demo"
         >
           <div className="proof-frame-bar">
             <span className="proof-frame-dot"></span>
             <span className="proof-frame-dot"></span>
             <span className="proof-frame-dot"></span>
-            <span className="proof-frame-url">platinum.simplegenius.io/demo</span>
+            <span className="proof-frame-url">showcase-quote-builder.vercel.app</span>
           </div>
           <div className="proof-frame-body">
             <img
               className="proof-shot"
-              src="/shots/platinum-quote.jpg"
-              alt="Screenshot of a countertop quote with measured slab layouts"
+              src="/shots/quote-builder.jpg"
+              alt="Screenshot of a countertop quote with pieces laid out on a stone slab"
               width="1280"
               height="800"
               loading="lazy"
             />
-            <span className="proof-frame-kicker">Quoting platform — in production for a DFW countertop fabricator</span>
+            <span className="proof-frame-kicker">Quoting platform — built for a fabricator, shown as a sample business</span>
             <span className="proof-frame-cta">Try the demo quote builder {'↗︎'}</span>
           </div>
         </a>
