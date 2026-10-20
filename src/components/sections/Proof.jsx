@@ -3,14 +3,14 @@ import NumberTicker from '../polish/NumberTicker';
 
 /**
  * Proof — evidence that we actually build what Genius describes.
- * A clickable live-demo frame (NSA's creative design studio) over an anonymous case-study card
- * for a private client platform, plus a row with the Switchboard live call line
- * and the white-label countertop quoting demo.
+ * Two clickable live-demo frames (NSA's creative design studio and the
+ * white-label CRM with automated outreach), plus a row with the Switchboard
+ * live call line and the white-label countertop quoting demo.
  *
- * The case-study card stays text-only and industry-free on purpose: the client
- * agreement (§20.9) allows a general, anonymous description and no screenshots,
- * links, platform materials or architecture details, and the site carries no
- * sports or athletics mentions (non-compete). Do not add any.
+ * The CRM demo is a clean-room build on fictional businesses in real estate,
+ * roofing, dental and auto. It shares nothing with any client platform, and
+ * the site carries no sports or athletics mentions (non-compete). Keep both
+ * true.
  *
  * Listens for `genius:proof-mention` window events (dispatched by the Genius
  * chat when a reply surfaces one of these) and briefly glows the matching card.
@@ -40,11 +40,9 @@ const STATS = [
 // the visitor's browser). Repo: lazycryptotrapstar-tech/showcase-quote-builder.
 const QUOTE_DEMO_URL = 'https://showcase-quote-builder.vercel.app';
 
-const CASE_ROWS = [
-  { marker: 'crm', text: 'one place for contacts, pipeline and follow-up' },
-  { marker: 'ticketing', text: 'sales, checkout and check-in, built end to end' },
-  { marker: 'in use', text: 'running for the client’s team every day' },
-];
+// White-label CRM with automated outreach (fictional businesses, data in the
+// visitor's browser). Repo: lazycryptotrapstar-tech/showcase-crm.
+const CRM_DEMO_URL = 'https://showcase-crm.vercel.app';
 
 const DEMOS = [
   {
@@ -57,6 +55,17 @@ const DEMOS = [
     accent: 'rose',
     shot: '/shots/nsa-studio.jpg',
     shotAlt: 'Screenshot of the live NSA Creative Design Studio site, with Poppy the creative assistant',
+  },
+  {
+    key: 'crm',
+    url: CRM_DEMO_URL,
+    urlLabel: 'showcase-crm.vercel.app',
+    kicker: 'CRM + automated outreach — real estate, roofing, dental, auto · sample businesses',
+    cta: 'Run a day of outreach in the live demo ↗︎',
+    ariaLabel: 'Open the live CRM and automated outreach demo',
+    accent: null,
+    shot: '/shots/crm-showcase.jpg',
+    shotAlt: 'Screenshot of the CRM demo: lead stats, outreach sent over two weeks, and old leads queued for the next send',
   },
 ];
 
@@ -143,28 +152,6 @@ export default function Proof() {
               </div>
             </a>
           ))}
-
-          <div className="proof-frame proof-frame--static">
-            <div className="proof-frame-bar">
-              <span className="proof-frame-dot"></span>
-              <span className="proof-frame-dot"></span>
-              <span className="proof-frame-dot"></span>
-              <span className="proof-frame-url">case study · private client build</span>
-            </div>
-            <div className="proof-frame-body">
-              <div className="proof-call">
-                <span className="proof-case-title font-display">A CRM and ticketing platform for a private client</span>
-                {CASE_ROWS.map((r) => (
-                  <div key={r.marker} className="proof-call-row">
-                    <span className="proof-call-marker">{r.marker}</span>
-                    <span className="proof-call-text">{r.text}</span>
-                  </div>
-                ))}
-              </div>
-              <span className="proof-frame-kicker">Private build — shown by description only</span>
-              <span className="proof-frame-cta proof-frame-cta--muted">Ask about it on a call</span>
-            </div>
-          </div>
         </div>
       </div>
 

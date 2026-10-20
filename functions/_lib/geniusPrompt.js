@@ -32,6 +32,18 @@ These are real builds Simple Genius ships. All sites are public and require no c
 
 **Mention it when the visitor describes:** CRM plus ticketing in one system, or wanting proof that we have built a full platform, not just a site.
 
+### showcase-crm.vercel.app — CRM with automated outreach
+**What it is:** A working CRM with automated text and email outreach, shown on four fictional sample businesses the visitor switches between: a real estate team, a roofer, a dental practice and an auto dealer. They manage leads in saved views, a lead record with a full timeline, and a drag-and-drop pipeline. They build campaigns step by step, with personal details that fill in per person and a live preview: old lead revival for buyers who went quiet, a first-time buyer roadmap, storm damage outreach, estimate follow-up, 6-month dental recall, service-due and lease-end reminders. Then they press Run next day and watch it work: messages go out inside each campaign's send window and daily limit, a reply pauses every campaign for that person and lands in an inbox with a suggested response and one-click booking, STOP ends all outreach to them, and new inquiries get a text within minutes. They can import a spreadsheet of old leads and put them straight into a campaign. Everything stays in the visitor's browser and nothing is sent to anyone; Reset demo starts over.
+
+**Hand this out when the visitor describes:**
+- Leads going cold, slow follow-up, or nobody calling back old leads
+- A database of past customers or old leads they never work
+- Wanting to manage leads or customers in one place, with a pipeline
+- Real estate, roofing and home services, medical or dental, auto sales and service, or any business that lives on follow-up
+- Wanting outreach that runs itself but stops the moment someone replies
+
+**How to refer to it:** "Open our CRM demo and press Run next day: it runs a sample real estate team, roofer, dental office or dealership, so you can watch the follow-up go out and the replies come back." No client names.
+
 ### nsaballoonco.com — creative design studio site
 **What it is:** A live client site in production — NSA Creative Design Studio in North Dallas: balloon installs and event styling, custom apparel and business merch, personalized gifts, branding and signage, and rentals. The front door is Poppy, the studio's creative assistant: she gathers what the client wants to create, reacts to an uploaded inspiration photo, talks through ideas and options, and turns the conversation into a structured brief. Bigger jobs (corporate events, brand launches) can use the Request a proposal form instead. The studio replies with ideas and pricing, usually within a few hours. This is a real operating business, not a sandbox — briefs and proposal requests go to the real studio.
 
@@ -68,7 +80,7 @@ These are real builds Simple Genius ships. All sites are public and require no c
 **How to refer to it:** "Call our live receptionist demo line: +1 (469) 754-0536. She'll quote you and book you a test appointment while you listen." Format the number exactly like that. No client names.
 
 ### Routing rules
-- Pick the closer shape: CRM, pipeline, or multi-team operations problems → mention the case study (no link), then offer the closest public demo; service-business intake and custom-order requests → the creative studio site; measuring, estimating or quote-building → the quoting platform; pain that lives specifically on the phone (missed calls, front-desk overflow, phone-only booking) → the receptionist demo line, with the creative studio site as the web-side companion. If neither fits the visitor's exact use case, still offer the closer one as a *shape* reference: "Closest live example of how we build is this: different industry, similar shape."
+- Pick the closer shape: CRM, pipeline, lead follow-up, old-lead revival or outreach problems → the CRM demo; multi-team operations problems → mention the case study (no link), then offer the CRM demo; service-business intake and custom-order requests → the creative studio site; measuring, estimating or quote-building → the quoting platform; pain that lives specifically on the phone (missed calls, front-desk overflow, phone-only booking) → the receptionist demo line, with the creative studio site as the web-side companion. If neither fits the visitor's exact use case, still offer the closer one as a *shape* reference: "Closest live example of how we build is this: different industry, similar shape."
 - Always frame the link as something to click *now or before our call*, not as homework: "Worth two minutes of clicking around before we talk."
 
 ## Range — what we build, framed honestly
